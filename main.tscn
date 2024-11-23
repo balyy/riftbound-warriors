@@ -1,0 +1,64 @@
+[gd_scene load_steps=7 format=3 uid="uid://cpee42km1830x"]
+
+[ext_resource type="Script" path="res://main.gd" id="1_788q0"]
+[ext_resource type="PackedScene" uid="uid://b2nm8jnor4ueh" path="res://enemies/ball_and_chain_robot/ball_and_chain_robot.tscn" id="2_pvsvh"]
+[ext_resource type="PackedScene" uid="uid://bcwkugn6v3oy7" path="res://addons/godot_state_charts/utilities/state_chart_debugger.tscn" id="2_srhp5"]
+[ext_resource type="Script" path="res://test_enemy.gd" id="4_cppei"]
+[ext_resource type="Texture2D" uid="uid://c36gii7wsc7ic" path="res://icon.svg" id="5_aha1o"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6n357"]
+size = Vector2(34, 34)
+
+[node name="Main" type="Node2D"]
+script = ExtResource("1_788q0")
+
+[node name="StateChartDebugger" parent="." instance=ExtResource("2_srhp5")]
+anchors_preset = 0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_left = 719.0
+offset_top = -60.0
+offset_right = 904.0
+offset_bottom = 346.0
+grow_horizontal = 1
+grow_vertical = 1
+initial_node_to_watch = NodePath("../BallAndChainRobot")
+
+[node name="BallAndChainRobot" parent="." instance=ExtResource("2_pvsvh")]
+position = Vector2(320, 261)
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(331, 262)
+
+[node name="TestEnemy" type="Node2D" parent="."]
+position = Vector2(109, 183)
+script = ExtResource("4_cppei")
+
+[node name="Sprite2D" type="Sprite2D" parent="TestEnemy"]
+scale = Vector2(0.265625, 0.265625)
+texture = ExtResource("5_aha1o")
+
+[node name="Area2D" type="Area2D" parent="TestEnemy"]
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TestEnemy/Area2D"]
+shape = SubResource("RectangleShape2D_6n357")
+
+[node name="ButtonLeft" type="Button" parent="."]
+z_index = 1
+offset_left = 725.0
+offset_top = 355.0
+offset_right = 800.0
+offset_bottom = 386.0
+text = "Turn left"
+
+[node name="ButtonRight" type="Button" parent="."]
+z_index = 1
+offset_left = 805.0
+offset_top = 355.0
+offset_right = 891.0
+offset_bottom = 386.0
+text = "Turn right"
+
+[connection signal="pressed" from="ButtonLeft" to="." method="_on_button_left_pressed"]
+[connection signal="pressed" from="ButtonRight" to="." method="_on_button_right_pressed"]
