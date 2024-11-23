@@ -226,12 +226,11 @@ animations = [{
 radius = 149.003
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ajs63"]
-size = Vector2(58, 12)
+size = Vector2(55, 17)
 
 [node name="BallAndChainRobot" type="CharacterBody2D" node_paths=PackedStringArray("sprite")]
 z_index = 1
 collision_layer = 2
-collision_mask = 3
 script = ExtResource("1_afi7a")
 sprite = NodePath("AnimatedSprite2D")
 
@@ -242,8 +241,10 @@ shape = SubResource("CapsuleShape2D_aeha8")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(7, -8)
 sprite_frames = SubResource("SpriteFrames_nju0u")
-animation = &"attack"
+animation = &"charge"
 autoplay = "idle"
+frame = 5
+frame_progress = 1.0
 
 [node name="DetectionBox" type="Area2D" parent="."]
 collision_layer = 0
@@ -255,7 +256,7 @@ shape = SubResource("CircleShape2D_1noyc")
 collision_layer = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AttackBox"]
-position = Vector2(21, 3)
+position = Vector2(19.5, 1.5)
 shape = SubResource("RectangleShape2D_ajs63")
 
 [node name="StateChart" type="Node" parent="."]
@@ -311,7 +312,7 @@ delay_in_seconds = "0.0"
 script = ExtResource("6_eften")
 to = NodePath("../../Chase")
 event = &"enemy_out_of_range"
-delay_in_seconds = "0"
+delay_in_seconds = "1"
 
 [connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
 [connection signal="area_entered" from="DetectionBox" to="." method="_on_detection_box_area_entered"]
