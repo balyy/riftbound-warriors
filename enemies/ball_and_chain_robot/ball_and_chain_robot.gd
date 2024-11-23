@@ -2,16 +2,19 @@ extends CharacterBody2D
 
 @export var sprite:AnimatedSprite2D
 
+var random = RandomNumberGenerator.new()
 var enemy = null
 enum Direction {LEFT, RIGHT}
 
 
 func _process(_delta: float) -> void:
 	check_detection_box_occupation()
+	z_index = global_position.y
 
 
 func to_vector2(target):
 	return Vector2(target.global_position.x, target.global_position.y)
+
 
 func move_towards(delta, target: Vector2):
 	var direction = global_position.direction_to(calculate_attack_position(target))
@@ -36,10 +39,12 @@ func rotate_towards_target(target: Vector2):
 func calculate_attack_position(target: Vector2):
 	var position: Vector2
 	if global_position.distance_to(Vector2(target.x + 50, target.y)) > global_position.distance_to(Vector2(target.x - 50, target.y)):
-		position = Vector2(target.x - 50, target.y)
+		position = Vector2(target.x - 40, target.y) + Vector2(random.randf_range(-20, 20), random.randf_range(-20, 20))
 	else:
-		position = Vector2(target.x + 50, target.y)
+		position = Vector2(target.x + 40, target.y) + Vector2(random.randf_range(-20, 20), random.randf_range(-20, 20))
+		
 	return position
+
 
 # IDLE STATE
 
@@ -102,7 +107,7 @@ func check_attack_box_occupation():
 
 
 func check_attack_position(target: Vector2):
-	if round(global_position.y) == round(target.y)and attack_box_occupied:
+	if round(global_position.y + random.randf_range(-20, 20)) == round(target.y)and attack_box_occupied:
 		$StateChart.send_event("enemy_in_range") 
 
 
