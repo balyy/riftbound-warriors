@@ -81,7 +81,6 @@ func _on_chase_state_processing(delta: float) -> void:
 # CHARGE STATE
 
 func _on_animated_sprite_2d_animation_finished() -> void:
-	print("animation finished")
 	$StateChart.send_event("charge_finished")
 
 

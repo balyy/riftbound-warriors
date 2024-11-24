@@ -170,7 +170,7 @@ animations = [{
 }],
 "loop": false,
 "name": &"charge",
-"speed": 10.0
+"speed": 7.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -242,8 +242,10 @@ shape = SubResource("CapsuleShape2D_aeha8")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(7, -8)
 sprite_frames = SubResource("SpriteFrames_nju0u")
-animation = &"attack"
+animation = &"charge"
 autoplay = "idle"
+frame = 5
+frame_progress = 1.0
 
 [node name="DetectionBox" type="Area2D" parent="."]
 collision_layer = 0
