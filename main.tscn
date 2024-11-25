@@ -28,14 +28,14 @@ initial_node_to_watch = NodePath("../BallAndChainRobot")
 position = Vector2(137, 352)
 
 [node name="BallAndChainRobot2" parent="." instance=ExtResource("2_pvsvh")]
-position = Vector2(63, 397)
+position = Vector2(124, 293)
 
 [node name="BallAndChainRobot3" parent="." instance=ExtResource("2_pvsvh")]
-position = Vector2(72, 275)
+position = Vector2(68, 326)
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(331, 262)
-zoom = Vector2(3, 3)
+zoom = Vector2(4, 4)
 
 [node name="TestEnemy" type="Node2D" parent="."]
 position = Vector2(109, 183)

@@ -242,10 +242,8 @@ shape = SubResource("CapsuleShape2D_aeha8")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(7, -8)
 sprite_frames = SubResource("SpriteFrames_nju0u")
-animation = &"charge"
+animation = &"idle"
 autoplay = "idle"
-frame = 5
-frame_progress = 1.0
 
 [node name="DetectionBox" type="Area2D" parent="."]
 collision_layer = 0
@@ -259,6 +257,7 @@ collision_layer = 0
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AttackBox"]
 position = Vector2(21, 3)
 shape = SubResource("RectangleShape2D_ajs63")
+debug_color = Color(1, 0, 0, 0.419608)
 
 [node name="StateChart" type="Node" parent="."]
 script = ExtResource("2_dltbl")
