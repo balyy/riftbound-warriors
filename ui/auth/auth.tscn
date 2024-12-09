@@ -1,6 +1,26 @@
-[gd_scene load_steps=2 format=3 uid="uid://c4xia2g6yqy8y"]
+[gd_scene load_steps=9 format=3 uid="uid://c4xia2g6yqy8y"]
 
 [ext_resource type="Script" path="res://ui/auth/auth.gd" id="1_8ykvc"]
+[ext_resource type="PackedScene" uid="uid://b2nm8jnor4ueh" path="res://enemies/ball_and_chain_robot/ball_and_chain_robot.tscn" id="2_6igxd"]
+[ext_resource type="Script" path="res://ui/auth/random_point.gd" id="3_onwyc"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qbuib"]
+bg_color = Color(0.239216, 0.329412, 0.670588, 1)
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_htupj"]
+b = Vector2(1920, 0)
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_2j4n8"]
+b = Vector2(0, 1080)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_remir"]
+radius = 47.0
+
+[sub_resource type="Curve2D" id="Curve2D_ilony"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 192, 126, 0, 0, 0, 0, 1658, 119, 0, 0, 0, 0, 206, 335, 0, 0, 0, 0, 1645, 339, 0, 0, 0, 0, 196, 503, 0, 0, 0, 0, 1647, 503, 0, 0, 0, 0, 192, 678, 0, 0, 0, 0, 1647, 678, 0, 0, 0, 0, 192, 852, 0, 0, 0, 0, 1609, 859, 0, 0, 0, 0, 180, 1009, 0, 0, 0, 0, 1615, 1014)
+}
+point_count = 12
 
 [node name="Authentication" type="Control"]
 layout_mode = 3
@@ -12,66 +32,145 @@ grow_vertical = 2
 size_flags_horizontal = 4
 script = ExtResource("1_8ykvc")
 
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_qbuib")
+
+[node name="BackgroundStuff" type="Node2D" parent="."]
+
+[node name="Border" type="Area2D" parent="BackgroundStuff"]
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BackgroundStuff/Border"]
+shape = SubResource("SegmentShape2D_htupj")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="BackgroundStuff/Border"]
+shape = SubResource("SegmentShape2D_2j4n8")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="BackgroundStuff/Border"]
+position = Vector2(0, 1080)
+shape = SubResource("SegmentShape2D_htupj")
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="BackgroundStuff/Border"]
+position = Vector2(1920, 0)
+shape = SubResource("SegmentShape2D_2j4n8")
+
+[node name="BallAndChainRobot" parent="BackgroundStuff" instance=ExtResource("2_6igxd")]
+position = Vector2(1595, 825)
+scale = Vector2(5, 5)
+
+[node name="Label" type="Label" parent="BackgroundStuff/BallAndChainRobot"]
+offset_left = -12.6
+offset_top = -21.2
+offset_right = 29.4
+offset_bottom = 1.8
+theme_override_font_sizes/font_size = 10
+text = "Attila"
+
+[node name="RandomPoint" type="Node2D" parent="BackgroundStuff"]
+script = ExtResource("3_onwyc")
+
+[node name="Area2D" type="Area2D" parent="BackgroundStuff/RandomPoint"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BackgroundStuff/RandomPoint/Area2D"]
+shape = SubResource("CircleShape2D_remir")
+
+[node name="Path2D" type="Path2D" parent="BackgroundStuff"]
+curve = SubResource("Curve2D_ilony")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="BackgroundStuff/Path2D"]
+unique_name_in_owner = true
+position = Vector2(192, 126)
+rotation = -0.00477486
+
+[node name="NewPointTimer" type="Timer" parent="BackgroundStuff"]
+unique_name_in_owner = true
+wait_time = 5.0
+autostart = true
+
 [node name="PanelContainer" type="PanelContainer" parent="."]
-custom_minimum_size = Vector2(300, 0)
+z_index = 4096
+custom_minimum_size = Vector2(400, 0)
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -231.0
-offset_top = -229.0
-offset_right = 232.0
-offset_bottom = 159.0
+offset_left = -301.0
+offset_top = -288.0
+offset_right = 303.0
+offset_bottom = 218.0
 grow_horizontal = 2
 grow_vertical = 2
 
 [node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="PanelContainer/VBoxContainer"]
+[node name="AuthLabel" type="Label" parent="PanelContainer/VBoxContainer"]
 layout_mode = 2
-theme_override_font_sizes/font_size = 30
+theme_override_font_sizes/font_size = 45
 text = "Authentication"
 horizontal_alignment = 1
 
-[node name="Label2" type="Label" parent="PanelContainer/VBoxContainer"]
+[node name="EmailLabel" type="Label" parent="PanelContainer/VBoxContainer"]
 layout_mode = 2
+theme_override_font_sizes/font_size = 30
 text = "Email"
 
 [node name="EmailLineEdit" type="LineEdit" parent="PanelContainer/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
+theme_override_font_sizes/font_size = 30
 
-[node name="Label3" type="Label" parent="PanelContainer/VBoxContainer"]
+[node name="PasswordLabel" type="Label" parent="PanelContainer/VBoxContainer"]
 layout_mode = 2
+theme_override_font_sizes/font_size = 30
 text = "Password"
 
 [node name="PasswordLineEdit" type="LineEdit" parent="PanelContainer/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
+theme_override_font_sizes/font_size = 30
 secret = true
 
 [node name="StateLabel" type="Label" parent="PanelContainer/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
+theme_override_font_sizes/font_size = 30
 
 [node name="Control" type="Control" parent="PanelContainer/VBoxContainer"]
 custom_minimum_size = Vector2(0, 100)
 layout_mode = 2
 
 [node name="LoginButton" type="Button" parent="PanelContainer/VBoxContainer"]
+unique_name_in_owner = true
 custom_minimum_size = Vector2(100, 0)
 layout_direction = 2
 layout_mode = 2
+theme_override_font_sizes/font_size = 30
 text = "Login"
 
 [node name="SignUpButton" type="Button" parent="PanelContainer/VBoxContainer"]
+unique_name_in_owner = true
 custom_minimum_size = Vector2(100, 0)
 layout_direction = 3
 layout_mode = 2
+theme_override_font_sizes/font_size = 30
 text = "Sign up"
 
+[node name="FailedTimeout" type="Timer" parent="PanelContainer/VBoxContainer"]
+unique_name_in_owner = true
+wait_time = 10.0
+one_shot = true
+
+[connection signal="timeout" from="BackgroundStuff/NewPointTimer" to="BackgroundStuff/RandomPoint" method="_on_new_point_timer_timeout"]
 [connection signal="pressed" from="PanelContainer/VBoxContainer/LoginButton" to="." method="_on_login_button_pressed"]
 [connection signal="pressed" from="PanelContainer/VBoxContainer/SignUpButton" to="." method="_on_sign_up_button_pressed"]
+[connection signal="timeout" from="PanelContainer/VBoxContainer/FailedTimeout" to="." method="_on_failed_timeout_timeout"]

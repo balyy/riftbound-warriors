@@ -28,11 +28,11 @@ func move_towards(delta, target: Vector2):
 var facing = Direction.RIGHT
 func rotate_towards_target(target: Vector2):
 	if target.x < global_position.x and facing != Direction.LEFT:
-		scale.x = -1
+		scale.x *= -1
 		facing = Direction.LEFT
 		
 	elif target.x > global_position.x and facing != Direction.RIGHT:
-		scale.x = -1
+		scale.x *= -1
 		facing = Direction.RIGHT
 
 
