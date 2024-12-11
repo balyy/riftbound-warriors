@@ -1,0 +1,335 @@
+[gd_scene load_steps=10 format=3 uid="uid://c4xia2g6yqy8y"]
+
+[ext_resource type="Script" path="res://ui/auth/auth.gd" id="1_8ykvc"]
+[ext_resource type="PackedScene" uid="uid://b2nm8jnor4ueh" path="res://enemies/ball_and_chain_robot/ball_and_chain_robot.tscn" id="2_6igxd"]
+[ext_resource type="Script" path="res://ui/auth/random_point.gd" id="3_onwyc"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qbuib"]
+bg_color = Color(0.239216, 0.329412, 0.670588, 1)
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_htupj"]
+b = Vector2(1920, 0)
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_2j4n8"]
+b = Vector2(0, 1080)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_remir"]
+radius = 47.0
+
+[sub_resource type="Curve2D" id="Curve2D_ilony"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 192, 126, 0, 0, 0, 0, 1658, 119, 0, 0, 0, 0, 206, 335, 0, 0, 0, 0, 1645, 339, 0, 0, 0, 0, 196, 503, 0, 0, 0, 0, 1647, 503, 0, 0, 0, 0, 192, 678, 0, 0, 0, 0, 1647, 678, 0, 0, 0, 0, 192, 852, 0, 0, 0, 0, 1609, 859, 0, 0, 0, 0, 180, 1009, 0, 0, 0, 0, 1615, 1014)
+}
+point_count = 12
+
+[sub_resource type="Theme" id="Theme_k5pgd"]
+
+[node name="Authentication" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+script = ExtResource("1_8ykvc")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_qbuib")
+
+[node name="BackgroundStuff" type="Node2D" parent="."]
+
+[node name="Border" type="Area2D" parent="BackgroundStuff"]
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BackgroundStuff/Border"]
+shape = SubResource("SegmentShape2D_htupj")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="BackgroundStuff/Border"]
+shape = SubResource("SegmentShape2D_2j4n8")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="BackgroundStuff/Border"]
+position = Vector2(0, 1080)
+shape = SubResource("SegmentShape2D_htupj")
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="BackgroundStuff/Border"]
+position = Vector2(1920, 0)
+shape = SubResource("SegmentShape2D_2j4n8")
+
+[node name="BallAndChainRobot" parent="BackgroundStuff" instance=ExtResource("2_6igxd")]
+position = Vector2(1595, 825)
+scale = Vector2(5, 5)
+
+[node name="Label" type="Label" parent="BackgroundStuff/BallAndChainRobot"]
+offset_left = -12.6
+offset_top = -21.2
+offset_right = 29.4
+offset_bottom = 1.8
+theme_override_font_sizes/font_size = 10
+text = "Attila"
+metadata/_edit_use_anchors_ = true
+
+[node name="RandomPoint" type="Node2D" parent="BackgroundStuff"]
+script = ExtResource("3_onwyc")
+
+[node name="Area2D" type="Area2D" parent="BackgroundStuff/RandomPoint"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BackgroundStuff/RandomPoint/Area2D"]
+shape = SubResource("CircleShape2D_remir")
+
+[node name="Path2D" type="Path2D" parent="BackgroundStuff"]
+curve = SubResource("Curve2D_ilony")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="BackgroundStuff/Path2D"]
+unique_name_in_owner = true
+position = Vector2(192, 126)
+rotation = -0.00477486
+
+[node name="NewPointTimer" type="Timer" parent="BackgroundStuff"]
+unique_name_in_owner = true
+wait_time = 5.0
+autostart = true
+
+[node name="LogInPanel" type="PanelContainer" parent="."]
+unique_name_in_owner = true
+z_index = 4096
+custom_minimum_size = Vector2(700, 0)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -301.0
+offset_top = -288.0
+offset_right = 303.0
+offset_bottom = 218.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_k5pgd")
+
+[node name="MarginContainer" type="MarginContainer" parent="LogInPanel"]
+layout_mode = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="VBoxContainer" type="VBoxContainer" parent="LogInPanel/MarginContainer"]
+layout_mode = 2
+
+[node name="LogInLabel" type="Label" parent="LogInPanel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 45
+text = "Log In"
+horizontal_alignment = 1
+
+[node name="EmailLabel" type="Label" parent="LogInPanel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "Email"
+
+[node name="LogInEmailLineEdit" type="LineEdit" parent="LogInPanel/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+
+[node name="PasswordLabel" type="Label" parent="LogInPanel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "Password"
+
+[node name="LogInPasswordLineEdit" type="LineEdit" parent="LogInPanel/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+secret = true
+
+[node name="LogInStateLabel" type="Label" parent="LogInPanel/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+
+[node name="Control" type="Control" parent="LogInPanel/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+
+[node name="LogInButton" type="Button" parent="LogInPanel/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 60)
+layout_direction = 2
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "Log In"
+
+[node name="Control2" type="Control" parent="LogInPanel/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="LogInPanel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="Label" type="Label" parent="LogInPanel/MarginContainer/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "Don't have an account yet?"
+
+[node name="Control" type="Control" parent="LogInPanel/MarginContainer/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+
+[node name="ToSignUpButton" type="Button" parent="LogInPanel/MarginContainer/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(150, 0)
+layout_direction = 3
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "Sign up"
+
+[node name="FailedTimeout" type="Timer" parent="LogInPanel/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+wait_time = 10.0
+one_shot = true
+
+[node name="SignUpPanel" type="PanelContainer" parent="."]
+unique_name_in_owner = true
+visible = false
+z_index = 4096
+custom_minimum_size = Vector2(700, 0)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -301.0
+offset_top = -288.0
+offset_right = 303.0
+offset_bottom = 218.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_k5pgd")
+
+[node name="MarginContainer" type="MarginContainer" parent="SignUpPanel"]
+layout_mode = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="VBoxContainer" type="VBoxContainer" parent="SignUpPanel/MarginContainer"]
+layout_mode = 2
+
+[node name="SignUpLabel" type="Label" parent="SignUpPanel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 45
+text = "Sign up"
+horizontal_alignment = 1
+
+[node name="EmailLabel" type="Label" parent="SignUpPanel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "Email"
+
+[node name="SignUpEmailLineEdit" type="LineEdit" parent="SignUpPanel/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+
+[node name="PasswordLabel" type="Label" parent="SignUpPanel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "Password"
+
+[node name="SignUpPasswordLineEdit" type="LineEdit" parent="SignUpPanel/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+secret = true
+
+[node name="UsernameLabel" type="Label" parent="SignUpPanel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "Username"
+
+[node name="SignUpUsernameLineEdit" type="LineEdit" parent="SignUpPanel/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+
+[node name="UsernameLabel2" type="Label" parent="SignUpPanel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "Country"
+
+[node name="OptionButton" type="OptionButton" parent="SignUpPanel/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+item_count = 3
+popup/item_0/text = "Test"
+popup/item_1/text = "Test2"
+popup/item_1/id = 1
+popup/item_2/text = "Test3"
+popup/item_2/id = 2
+
+[node name="SignUpStateLabel" type="Label" parent="SignUpPanel/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+
+[node name="Control" type="Control" parent="SignUpPanel/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+
+[node name="SignUpButton" type="Button" parent="SignUpPanel/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 60)
+layout_direction = 2
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "Sign Up"
+
+[node name="Control2" type="Control" parent="SignUpPanel/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="SignUpPanel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="Label" type="Label" parent="SignUpPanel/MarginContainer/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "Already have an account?"
+
+[node name="Control" type="Control" parent="SignUpPanel/MarginContainer/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+
+[node name="ToLogInButton" type="Button" parent="SignUpPanel/MarginContainer/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(150, 0)
+layout_direction = 3
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "Log in"
+
+[node name="FailedTimeout" type="Timer" parent="SignUpPanel/MarginContainer/VBoxContainer"]
+wait_time = 10.0
+one_shot = true
+
+[connection signal="timeout" from="BackgroundStuff/NewPointTimer" to="BackgroundStuff/RandomPoint" method="_on_new_point_timer_timeout"]
+[connection signal="pressed" from="LogInPanel/MarginContainer/VBoxContainer/LogInButton" to="." method="_on_login_button_pressed"]
+[connection signal="pressed" from="LogInPanel/MarginContainer/VBoxContainer/HBoxContainer/ToSignUpButton" to="." method="_on_to_sign_up_button_pressed"]
+[connection signal="timeout" from="LogInPanel/MarginContainer/VBoxContainer/FailedTimeout" to="." method="_on_failed_timeout_timeout"]
+[connection signal="pressed" from="SignUpPanel/MarginContainer/VBoxContainer/SignUpButton" to="." method="_on_sign_up_button_pressed"]
+[connection signal="pressed" from="SignUpPanel/MarginContainer/VBoxContainer/HBoxContainer/ToLogInButton" to="." method="_on_to_log_in_button_pressed"]
+[connection signal="timeout" from="SignUpPanel/MarginContainer/VBoxContainer/FailedTimeout" to="." method="_on_failed_timeout_timeout"]
