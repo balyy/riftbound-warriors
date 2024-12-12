@@ -2,20 +2,29 @@ extends Control
 
 func _ready():
 	Supabase.auth.connect("error", Callable(self, "_on_auth_error"))
-	update_profile("121fb12b-eedb-41bd-bce8-415e1daf37bc")
+	
+	signup("viraghbalazs2005@gmail.com", "test123")
+	
+func signup(email, password):	#	FOR DEBUGGING !! DO NOT USE
+	print("Attempting to sign up: ", email)
+	var response = Supabase.auth.sign_up(email, password)
+	print("Signup response: ", response)
+
 
 func update_profile(user_id: String):
 	Supabase.database.connect("updated", Callable(self, "_on_updated"))
 	var query = SupabaseQuery.new().from("profiles").update({
-		username = "test", #%SignUpUsernameLineEdit.text,
-		email = "test@gmail.com", #%SignUpEmailLineEdit.text,
+		username = %SignUpUsernameLineEdit.text,
+		email = %SignUpEmailLineEdit.text,
 		country_id = "HUN",
 		role_id = 3
 	}).eq("id", user_id)
 	Supabase.database.query(query)
 
+
 func _on_updated(result: Array):
 	print("Profile updated successfully: ", result)
+
 
 var failed = 0
 func _on_auth_error(error: Object):
@@ -39,6 +48,7 @@ func _on_auth_error(error: Object):
 		$"%SignUpStateLabel".text = "Failed too many times, please wait"
 		failed = 0
 
+
 func sign_in():
 	if not Supabase.auth.is_connected("signed_in", Callable(self, "_on_signed_in")):
 		Supabase.auth.connect("signed_in", Callable(self, "_on_signed_in"))
@@ -47,9 +57,11 @@ func sign_in():
 		%LogInPasswordLineEdit.text
 	)
 
+
 func _on_signed_in(user: SupabaseUser):
 	print("Successfully signed in as ", user)
 	get_tree().change_scene_to_file("res://main.tscn")
+
 
 func sign_up():
 	if not Supabase.auth.is_connected("signed_in", Callable(self, "on_signed_in")):
@@ -59,25 +71,35 @@ func sign_up():
 		%SignUpPasswordLineEdit.text
 	)
 
+
 func on_signed_up(user: SupabaseUser):
 	print("Successfully signed up as ", user)
+	Supabase.auth.sign_in(
+		%SignUpEmailLineEdit.text,
+		%SignUpPasswordLineEdit.text
+	)
 	update_profile(user.id) # Frissítjük a felhasználó profilját
+
 
 func _on_login_button_pressed() -> void:
 	print("login")
 	sign_in()
 
+
 func _on_sign_up_button_pressed() -> void:
 	print("register")
 	sign_up()
+
 
 func _on_failed_timeout_timeout() -> void:
 	%LogInButton.disabled = false
 	%SignUpButton.disabled = false
 
+
 func _on_to_sign_up_button_pressed() -> void:
 	%LogInPanel.visible = false
 	%SignUpPanel.visible = true
+
 
 func _on_to_log_in_button_pressed() -> void:
 	%LogInPanel.visible = true
