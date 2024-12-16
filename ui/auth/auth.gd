@@ -2,21 +2,16 @@ extends Control
 
 func _ready():
 	Supabase.auth.connect("error", Callable(self, "_on_auth_error"))
-	
-	signup("viraghbalazs2005@gmail.com", "test123")
-	
-func signup(email, password):	#	FOR DEBUGGING !! DO NOT USE
-	print("Attempting to sign up: ", email)
-	var response = Supabase.auth.sign_up(email, password)
-	print("Signup response: ", response)
 
 
-func update_profile(user_id: String):
+func update_profile(user_id: String, username : String, email : String, countryid : String):
 	Supabase.database.connect("updated", Callable(self, "_on_updated"))
+	print(username)
+	print(email)
 	var query = SupabaseQuery.new().from("profiles").update({
-		username = %SignUpUsernameLineEdit.text,
-		email = %SignUpEmailLineEdit.text,
-		country_id = "HUN",
+		username = username,
+		email = email,
+		country_id = countryid,
 		role_id = 3
 	}).eq("id", user_id)
 	Supabase.database.query(query)
@@ -49,12 +44,15 @@ func _on_auth_error(error: Object):
 		failed = 0
 
 
-func sign_in():
+func sign_in(email: String, password: String):
 	if not Supabase.auth.is_connected("signed_in", Callable(self, "_on_signed_in")):
 		Supabase.auth.connect("signed_in", Callable(self, "_on_signed_in"))
+	print("Signing in...")
+	print("Email: " + email)
+	print("Password: " + password)
 	Supabase.auth.sign_in(
-		%LogInEmailLineEdit.text,
-		%LogInPasswordLineEdit.text
+		email,
+		password
 	)
 
 
@@ -63,6 +61,10 @@ func _on_signed_in(user: SupabaseUser):
 	get_tree().change_scene_to_file("res://main.tscn")
 
 
+var username;
+var password;
+var email;
+var countryid;
 func sign_up():
 	if not Supabase.auth.is_connected("signed_in", Callable(self, "on_signed_in")):
 		Supabase.auth.connect("signed_up", Callable(self, "on_signed_up"))
@@ -70,20 +72,28 @@ func sign_up():
 		%SignUpEmailLineEdit.text,
 		%SignUpPasswordLineEdit.text
 	)
+	username = %SignUpUsernameLineEdit.text
+	password = %SignUpPasswordLineEdit.text
+	email = %SignUpEmailLineEdit.text
+	countryid = "HUN"
 
 
+var newUser;
 func on_signed_up(user: SupabaseUser):
 	print("Successfully signed up as ", user)
 	Supabase.auth.sign_in(
 		%SignUpEmailLineEdit.text,
 		%SignUpPasswordLineEdit.text
 	)
-	update_profile(user.id) # Frissítjük a felhasználó profilját
+	newUser = user;
+	
+	%EmailConfirmPanel.visible = true;
+	%SignUpPanel.visible = false;
 
 
 func _on_login_button_pressed() -> void:
 	print("login")
-	sign_in()
+	sign_in(%LogInEmailLineEdit.text, %LogInPasswordLineEdit.text)
 
 
 func _on_sign_up_button_pressed() -> void:
@@ -104,3 +114,15 @@ func _on_to_sign_up_button_pressed() -> void:
 func _on_to_log_in_button_pressed() -> void:
 	%LogInPanel.visible = true
 	%SignUpPanel.visible = false
+
+
+func _on_verified_check_box_toggled(toggled_on: bool) -> void:
+	if toggled_on == true:
+		%FinishRegistrationButton.disabled == false;
+	else:
+		%FinishRegistrationButton.disabled == true;
+
+func _on_finish_registration_button_pressed() -> void:
+	sign_in(email, password)
+	update_profile(newUser.id, username, email, countryid)
+	get_tree().change_scene_to_file("res://main.tscn")
