@@ -1,4 +1,4 @@
-[gd_scene load_steps=38 format=3 uid="uid://b2nm8jnor4ueh"]
+[gd_scene load_steps=40 format=3 uid="uid://b2nm8jnor4ueh"]
 
 [ext_resource type="Script" path="res://enemies/ball_and_chain_robot/ball_and_chain_robot.gd" id="1_afi7a"]
 [ext_resource type="Texture2D" uid="uid://c7etdjw6fgqu" path="res://enemies/ball_and_chain_robot/full_sheet.png" id="1_b0ujy"]
@@ -228,6 +228,20 @@ radius = 149.003
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ajs63"]
 size = Vector2(58, 12)
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_65ro6"]
+bg_color = Color(0.286275, 0, 0, 1)
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.0823529, 0.0823529, 0.0823529, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_csi2d"]
+bg_color = Color(0.866667, 0, 0, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_bottom = 1
+border_color = Color(0.0807833, 0.0807833, 0.0807833, 1)
+
 [node name="BallAndChainRobot" type="CharacterBody2D" node_paths=PackedStringArray("sprite")]
 z_index = 1
 y_sort_enabled = true
@@ -246,6 +260,7 @@ animation = &"idle"
 autoplay = "idle"
 
 [node name="DetectionBox" type="Area2D" parent="."]
+visible = false
 collision_layer = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionBox"]
@@ -313,6 +328,17 @@ script = ExtResource("6_eften")
 to = NodePath("../../Chase")
 event = &"enemy_out_of_range"
 delay_in_seconds = "0"
+
+[node name="HealthBar" type="ProgressBar" parent="."]
+unique_name_in_owner = true
+offset_left = -15.0
+offset_top = -20.0
+offset_right = 15.0
+offset_bottom = -15.0
+theme_override_styles/background = SubResource("StyleBoxFlat_65ro6")
+theme_override_styles/fill = SubResource("StyleBoxFlat_csi2d")
+value = 40.0
+show_percentage = false
 
 [connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
 [connection signal="area_entered" from="DetectionBox" to="." method="_on_detection_box_area_entered"]

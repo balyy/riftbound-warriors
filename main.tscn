@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://cpee42km1830x"]
+[gd_scene load_steps=9 format=3 uid="uid://cpee42km1830x"]
 
 [ext_resource type="Script" path="res://main.gd" id="1_788q0"]
 [ext_resource type="PackedScene" uid="uid://b2nm8jnor4ueh" path="res://enemies/ball_and_chain_robot/ball_and_chain_robot.tscn" id="2_pvsvh"]
@@ -6,6 +6,7 @@
 [ext_resource type="Script" path="res://test_enemy.gd" id="4_cppei"]
 [ext_resource type="Texture2D" uid="uid://c36gii7wsc7ic" path="res://icon.svg" id="5_aha1o"]
 [ext_resource type="Script" path="res://button.gd" id="6_77x7c"]
+[ext_resource type="PackedScene" uid="uid://dee4i8u3ro3xv" path="res://player/player.tscn" id="7_x7fa1"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6n357"]
 size = Vector2(34, 34)
@@ -53,5 +54,7 @@ offset_right = 14.0
 offset_bottom = 53.0
 text = "Log out"
 script = ExtResource("6_77x7c")
+
+[node name="Player" parent="." instance=ExtResource("7_x7fa1")]
 
 [connection signal="pressed" from="Button" to="Button" method="_on_pressed"]

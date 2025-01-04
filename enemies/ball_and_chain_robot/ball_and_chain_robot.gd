@@ -6,6 +6,8 @@ var random = RandomNumberGenerator.new()
 var enemy = null
 enum Direction {LEFT, RIGHT}
 
+func _ready() -> void:
+	%HealthBar.value = 100
 
 func _process(_delta: float) -> void:
 	check_detection_box_occupation()
@@ -44,6 +46,15 @@ func calculate_attack_position(target: Vector2):
 		position = Vector2(target.x + 40, target.y) + Vector2(random.randf_range(-20, 20), random.randf_range(-20, 20))
 		
 	return position
+
+# HEALTH MANAGEMENT
+
+func take_damage(damage: int):
+	%HealthBar.value -= damage
+
+
+func gain_health(health: int):
+	%HealthBar.value += health
 
 
 # IDLE STATE
