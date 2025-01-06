@@ -1,7 +1,6 @@
-[gd_scene load_steps=9 format=3 uid="uid://cpee42km1830x"]
+[gd_scene load_steps=8 format=3 uid="uid://cpee42km1830x"]
 
 [ext_resource type="Script" path="res://main.gd" id="1_788q0"]
-[ext_resource type="PackedScene" uid="uid://b2nm8jnor4ueh" path="res://enemies/ball_and_chain_robot/ball_and_chain_robot.tscn" id="2_pvsvh"]
 [ext_resource type="PackedScene" uid="uid://bcwkugn6v3oy7" path="res://addons/godot_state_charts/utilities/state_chart_debugger.tscn" id="2_srhp5"]
 [ext_resource type="Script" path="res://test_enemy.gd" id="4_cppei"]
 [ext_resource type="Texture2D" uid="uid://c36gii7wsc7ic" path="res://icon.svg" id="5_aha1o"]
@@ -24,10 +23,7 @@ offset_right = 807.0
 offset_bottom = 524.0
 grow_horizontal = 1
 grow_vertical = 1
-initial_node_to_watch = NodePath("../BallAndChainRobot")
-
-[node name="BallAndChainRobot" parent="." instance=ExtResource("2_pvsvh")]
-position = Vector2(137, 352)
+initial_node_to_watch = NodePath("../Player")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(331, 262)
@@ -56,5 +52,6 @@ text = "Log out"
 script = ExtResource("6_77x7c")
 
 [node name="Player" parent="." instance=ExtResource("7_x7fa1")]
+position = Vector2(219, 221)
 
 [connection signal="pressed" from="Button" to="Button" method="_on_pressed"]

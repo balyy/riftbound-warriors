@@ -1,10 +1,11 @@
-[gd_scene load_steps=10 format=3 uid="uid://dee4i8u3ro3xv"]
+[gd_scene load_steps=11 format=3 uid="uid://dee4i8u3ro3xv"]
 
 [ext_resource type="Script" path="res://player/player.gd" id="1_2d56r"]
 [ext_resource type="Texture2D" uid="uid://bhk7wi4l3nbxy" path="res://player/player.png" id="2_pgs3d"]
 [ext_resource type="Script" path="res://addons/godot_state_charts/state_chart.gd" id="3_r2ot3"]
 [ext_resource type="Script" path="res://addons/godot_state_charts/compound_state.gd" id="4_2mwx8"]
 [ext_resource type="Script" path="res://addons/godot_state_charts/atomic_state.gd" id="5_birmx"]
+[ext_resource type="Script" path="res://addons/godot_state_charts/transition.gd" id="6_vddst"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7v6y7"]
 size = Vector2(18, 18)
@@ -53,5 +54,44 @@ initial_state = NodePath("Idle")
 [node name="Idle" type="Node" parent="StateChart/Root"]
 script = ExtResource("5_birmx")
 
+[node name="ToMoving" type="Node" parent="StateChart/Root/Idle"]
+script = ExtResource("6_vddst")
+to = NodePath("../../Moving")
+event = &"moving"
+delay_in_seconds = "0.0"
+
+[node name="ToAttacking" type="Node" parent="StateChart/Root/Idle"]
+script = ExtResource("6_vddst")
+to = NodePath("../../Attacking")
+event = &"attacking"
+delay_in_seconds = "0.0"
+
 [node name="Moving" type="Node" parent="StateChart/Root"]
 script = ExtResource("5_birmx")
+
+[node name="ToIdle" type="Node" parent="StateChart/Root/Moving"]
+script = ExtResource("6_vddst")
+to = NodePath("../../Idle")
+event = &"idle"
+delay_in_seconds = "0.0"
+
+[node name="ToAttacking" type="Node" parent="StateChart/Root/Moving"]
+script = ExtResource("6_vddst")
+to = NodePath("../../Attacking")
+event = &"attacking"
+delay_in_seconds = "0.0"
+
+[node name="Attacking" type="Node" parent="StateChart/Root"]
+script = ExtResource("5_birmx")
+
+[node name="ToIdle" type="Node" parent="StateChart/Root/Attacking"]
+script = ExtResource("6_vddst")
+to = NodePath("../../Idle")
+event = &"idle"
+delay_in_seconds = "0.0"
+
+[node name="ToMoving" type="Node" parent="StateChart/Root/Attacking"]
+script = ExtResource("6_vddst")
+to = NodePath("../../Moving")
+event = &"moving"
+delay_in_seconds = "0.0"
