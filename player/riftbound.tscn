@@ -1,0 +1,29 @@
+[gd_scene load_steps=5 format=3 uid="uid://b0k1juufg2oh3"]
+
+[sub_resource type="Animation" id="Animation_kfh7y"]
+resource_name = "walk_east"
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_dxxc1"]
+_data = {
+"walk_east": SubResource("Animation_kfh7y")
+}
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_67sko"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_o6vtc"]
+
+[node name="CharacterBody2D" type="CharacterBody2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_dxxc1")
+}
+
+[node name="AnimationTree" type="AnimationTree" parent="."]
+tree_root = SubResource("AnimationNodeStateMachine_67sko")
+anim_player = NodePath("../AnimationPlayer")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_o6vtc")

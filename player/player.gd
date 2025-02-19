@@ -1,7 +1,7 @@
 extends CharacterBody2D
 
 
-@export var sprite: AnimatedSprite2D
+animation@export var sprite: AnimatedSprite2D
 @export var state_chart: StateChart
 
 

@@ -1,7 +1,6 @@
 [gd_scene load_steps=11 format=3 uid="uid://dee4i8u3ro3xv"]
 
 [ext_resource type="Script" path="res://player/player.gd" id="1_2d56r"]
-[ext_resource type="Texture2D" uid="uid://bhk7wi4l3nbxy" path="res://player/player.png" id="2_pgs3d"]
 [ext_resource type="Script" path="res://addons/godot_state_charts/state_chart.gd" id="3_r2ot3"]
 [ext_resource type="Script" path="res://addons/godot_state_charts/compound_state.gd" id="4_2mwx8"]
 [ext_resource type="Script" path="res://addons/godot_state_charts/atomic_state.gd" id="5_birmx"]
@@ -10,8 +9,11 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7v6y7"]
 size = Vector2(18, 18)
 
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_ie15c"]
+load_path = "res://.godot/imported/player.png-1ad27fc2a62fa126eae918723933dd6f.ctex"
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_c8guo"]
-atlas = ExtResource("2_pgs3d")
+atlas = SubResource("CompressedTexture2D_ie15c")
 region = Rect2(0, 0, 16, 16)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_aqinu"]
