@@ -1,10 +1,11 @@
-[gd_scene load_steps=8 format=3 uid="uid://cpee42km1830x"]
+[gd_scene load_steps=9 format=3 uid="uid://cpee42km1830x"]
 
-[ext_resource type="Script" path="res://main.gd" id="1_788q0"]
+[ext_resource type="Script" uid="uid://b6ivs7rmv1jtc" path="res://main.gd" id="1_788q0"]
 [ext_resource type="PackedScene" uid="uid://bcwkugn6v3oy7" path="res://addons/godot_state_charts/utilities/state_chart_debugger.tscn" id="2_srhp5"]
-[ext_resource type="Script" path="res://test_enemy.gd" id="4_cppei"]
+[ext_resource type="Script" uid="uid://bt45m61y1u2j7" path="res://test_enemy.gd" id="4_cppei"]
 [ext_resource type="Texture2D" uid="uid://c36gii7wsc7ic" path="res://icon.svg" id="5_aha1o"]
-[ext_resource type="Script" path="res://button.gd" id="6_77x7c"]
+[ext_resource type="Script" uid="uid://ry5ajblsrmep" path="res://button.gd" id="6_77x7c"]
+[ext_resource type="PackedScene" uid="uid://b0k1juufg2oh3" path="res://player/riftbound.tscn" id="7_272bh"]
 [ext_resource type="PackedScene" uid="uid://b2nm8jnor4ueh" path="res://enemies/ball_and_chain_robot/ball_and_chain_robot.tscn" id="7_i5u2x"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6n357"]
@@ -52,5 +53,8 @@ script = ExtResource("6_77x7c")
 
 [node name="BallAndChainRobot" parent="." instance=ExtResource("7_i5u2x")]
 position = Vector2(269, 340)
+
+[node name="CharacterBody2D" parent="." instance=ExtResource("7_272bh")]
+position = Vector2(187, 102)
 
 [connection signal="pressed" from="Button" to="Button" method="_on_pressed"]
