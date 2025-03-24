@@ -12,22 +12,19 @@
 size = Vector2(34, 34)
 
 [node name="Main" type="Node2D"]
+position = Vector2(294, 167)
 script = ExtResource("1_788q0")
 
 [node name="StateChartDebugger" parent="." instance=ExtResource("2_srhp5")]
 anchors_preset = 0
 anchor_right = 0.0
 anchor_bottom = 0.0
-offset_left = 476.0
-offset_top = -1.0
-offset_right = 807.0
-offset_bottom = 524.0
+offset_left = 335.0
+offset_top = -166.0
+offset_right = 666.0
+offset_bottom = 359.0
 grow_horizontal = 1
 grow_vertical = 1
-
-[node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2(331, 262)
-zoom = Vector2(2, 2)
 
 [node name="TestEnemy" type="Node2D" parent="."]
 position = Vector2(109, 183)
@@ -44,10 +41,10 @@ collision_mask = 2
 shape = SubResource("RectangleShape2D_6n357")
 
 [node name="Button" type="Button" parent="."]
-offset_left = -143.0
-offset_top = -4.0
-offset_right = 14.0
-offset_bottom = 53.0
+offset_left = -295.0
+offset_top = -167.0
+offset_right = -138.0
+offset_bottom = -110.0
 text = "Log out"
 script = ExtResource("6_77x7c")
 

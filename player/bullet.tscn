@@ -1,4 +1,4 @@
-[gd_scene load_steps=61 format=3 uid="uid://b8crxlfp67kc7"]
+[gd_scene load_steps=61 format=3 uid="uid://crffiva62lh3q"]
 
 [ext_resource type="Script" uid="uid://cqmq88pe0qfc5" path="res://player/bullet.gd" id="1_mq7ge"]
 [ext_resource type="Texture2D" uid="uid://dtaohfp4uqs7d" path="res://player/Projectile/Bolt/bolt1.png" id="2_a1dqq"]

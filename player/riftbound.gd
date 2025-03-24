@@ -17,9 +17,10 @@ extends CharacterBody2D
 var max_hp: int = 100
 var hp: int = 100
 var max_stamina: int = 100
-var stamina: int = 100
-var stamina_regen_rate: float = 10.0  # Másodpercenként ennyit regenerál
-var stamina_drain_rate: float = 2.0  # Futás közben fél mp alatt ennyi fogy
+var stamina: float = 100.0
+var stamina_regen_rate: float = 10.0
+var stamina_drain_rate: float = 20.0
+var stamina_depleted: bool = false
 
 var is_sliding: bool = false
 var is_rolling: bool = false
@@ -30,10 +31,12 @@ var roll_velocity: Vector2 = Vector2.ZERO
 func _ready():
 	if not animated_sprite:
 		push_error("AnimatedSprite2D is not assigned!")
-	
-	# UI elemek inicializálása
+	if not hp_bar or not stamina_bar:
+		push_error("HP Bar vagy Stamina Bar nincs hozzárendelve!")
+
 	hp_bar.max_value = max_hp
 	hp_bar.value = hp
+
 	stamina_bar.max_value = max_stamina
 	stamina_bar.value = stamina
 
@@ -63,34 +66,36 @@ func _physics_process(delta: float):
 
 	if is_sliding:
 		velocity = velocity.move_toward(Vector2.ZERO, slide_friction * delta)
-		if not Input.is_action_pressed("slide") or velocity.length() < 50:
+		if Input.is_action_just_pressed("roll") and stamina >= 20:
+			is_rolling = true
+			roll_timer = roll_duration
+			velocity = direction * boosted_roll_speed
+			animated_sprite.play("roll_" + get_direction_name(direction))
+			stamina -= 20
+			is_sliding = false  # Megszakítja a slide-ot
+		elif not Input.is_action_pressed("slide") or velocity.length() < 50:
 			is_sliding = false
 	elif Input.is_action_just_pressed("slide"):
 		is_sliding = true
 		velocity = direction * slide_speed
 		animated_sprite.play("slide_" + get_direction_name(direction))
 
-	# Ha slide közben próbálunk roll-olni
 	elif Input.is_action_just_pressed("roll") and stamina >= 20:
-		if not is_rolling:  # Csak akkor roll-olhat, ha nem rolling
-			# Ha csúszás közben vagyunk, akkor boostolt roll
-			if is_sliding:
-				velocity = direction * boosted_roll_speed
-			else:
-				velocity = direction * roll_speed
-			is_rolling = true
-			roll_timer = roll_duration
-			animated_sprite.play("roll_" + get_direction_name(direction))
-			stamina -= 20  # Roll 20 staminát fogyaszt
+		is_rolling = true
+		roll_timer = roll_duration
+		velocity = direction * roll_speed
+		animated_sprite.play("roll_" + get_direction_name(direction))
+		stamina -= 20
 
-	# Futás
-	elif Input.is_action_pressed("run") and stamina > 0:
+	elif Input.is_action_pressed("run") and stamina > 0 and not stamina_depleted:
 		velocity = direction * speed * run_multiplier
 		animated_sprite.play("run_" + get_direction_name(direction))
-		stamina -= stamina_drain_rate * delta  # Futás közben fogy a stamina
-	elif Input.is_action_pressed("run") and stamina <= 0:
-		velocity = direction * speed  # Ha nincs stamina, akkor csak séta
-		animated_sprite.play("walk_" + get_direction_name(direction))
+		stamina -= stamina_drain_rate * delta
+		if stamina <= 0:
+			stamina = 0
+			stamina_depleted = true
+			await get_tree().create_timer(2.0).timeout
+			stamina_depleted = false
 
 	elif input_vector != Vector2.ZERO:
 		velocity = direction * speed
@@ -100,11 +105,10 @@ func _physics_process(delta: float):
 		velocity = Vector2.ZERO
 		animated_sprite.play("idle_" + get_direction_name(direction))
 
-	# Stamina regenerálódás (ha nem csúszik vagy roll-ol)
+	# Stamina regenerálás
 	if not is_sliding and not is_rolling:
 		stamina = min(stamina + stamina_regen_rate * delta, max_stamina)
 
-	# Frissítjük a UI-t
 	hp_bar.value = hp
 	stamina_bar.value = stamina
 
@@ -114,19 +118,9 @@ func get_direction_name(dir: Vector2) -> String:
 	if dir == Vector2.ZERO:
 		return "down"
 	elif dir.y < 0:
-		if dir.x > 0:
-			return "upRight"
-		elif dir.x < 0:
-			return "upLeft"
-		else:
-			return "up"
+		return "upRight" if dir.x > 0 else "upLeft" if dir.x < 0 else "up"
 	elif dir.y > 0:
-		if dir.x > 0:
-			return "downRight"
-		elif dir.x < 0:
-			return "downLeft"
-		else:
-			return "down"
+		return "downRight" if dir.x > 0 else "downLeft" if dir.x < 0 else "down"
 	elif dir.x > 0:
 		return "right"
 	elif dir.x < 0:

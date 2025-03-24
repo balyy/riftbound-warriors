@@ -12,7 +12,7 @@
 [ext_resource type="Script" uid="uid://bsyy1lon2c1u2" path="res://addons/godot_state_charts/compound_state.gd" id="2_j5ql6"]
 [ext_resource type="Texture2D" uid="uid://bt8ner7nfrj7l" path="res://player/Animations/Roll/roll_southwest.png" id="2_jvd44"]
 [ext_resource type="Texture2D" uid="uid://ctx3wbomer4tv" path="res://player/Static/portal-Sheet.png" id="2_pblig"]
-[ext_resource type="PackedScene" uid="uid://b8crxlfp67kc7" path="res://player/bullet.tscn" id="2_r2eex"]
+[ext_resource type="PackedScene" uid="uid://crffiva62lh3q" path="res://player/bullet.tscn" id="2_r2eex"]
 [ext_resource type="Texture2D" uid="uid://n8xtlwy64qnm" path="res://player/Animations/Melee/melee_southwest.png" id="2_rbiwf"]
 [ext_resource type="Texture2D" uid="uid://d0k0lp5egcsev" path="res://player/Animations/Run/run_southwest.png" id="2_vbwoc"]
 [ext_resource type="Texture2D" uid="uid://wc3vb31r4jje" path="res://player/Animations/Melee/melee_southwest_reversed.png" id="3_3v65f"]
@@ -50,6 +50,47 @@
 [ext_resource type="Texture2D" uid="uid://dmfxlap15ex63" path="res://player/HealthStaminaBar/glitch staminabar.png" id="44_r2eex"]
 [ext_resource type="Texture2D" uid="uid://cbgex4e75m3qn" path="res://player/HealthStaminaBar/innerBar_health.png" id="45_dituo"]
 [ext_resource type="Texture2D" uid="uid://guf06buu4l6t" path="res://player/HealthStaminaBar/innerBar_stamina.png" id="46_fhghf"]
+
+[sub_resource type="Theme" id="Theme_33cla"]
+
+[sub_resource type="GDScript" id="GDScript_pblig"]
+script/source = "extends Control
+
+@export var hp_bar: TextureProgressBar
+@export var stamina_bar: TextureProgressBar
+
+var max_hp: int = 100
+var max_stamina: int = 100
+var hp: int = max_hp
+var stamina: int = max_stamina
+var stamina_regen_rate: float = 5.0  
+
+func _ready():
+	_update_bars()
+	
+func _process(delta):
+	# Stamina regeneráció
+	if stamina < max_stamina:
+		stamina += stamina_regen_rate * delta
+		stamina = min(stamina, max_stamina)
+		_update_bars()
+
+func take_damage(amount: int):
+	hp -= amount
+	hp = max(hp, 0)
+	_update_bars()
+
+func use_stamina(amount: int):
+	stamina -= amount
+	stamina = max(stamina, 0)
+	_update_bars()
+
+func _update_bars():
+	if hp_bar:
+		hp_bar.value = hp
+	if stamina_bar:
+		stamina_bar.value = stamina
+"
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_tu3x2"]
 atlas = ExtResource("2_pblig")
@@ -3244,83 +3285,32 @@ animations = [{
 "speed": 8.0
 }]
 
-[sub_resource type="Theme" id="Theme_33cla"]
-
-[sub_resource type="GDScript" id="GDScript_pblig"]
-script/source = "extends Control
-
-@export var hp_bar: TextureProgressBar
-@export var stamina_bar: TextureProgressBar
-
-var max_hp: int = 100
-var max_stamina: int = 100
-var hp: int = max_hp
-var stamina: int = max_stamina
-var stamina_regen_rate: float = 5.0  
-
-func _ready():
-	_update_bars()
-	
-func _process(delta):
-	# Stamina regeneráció
-	if stamina < max_stamina:
-		stamina += stamina_regen_rate * delta
-		stamina = min(stamina, max_stamina)
-		_update_bars()
-
-func take_damage(amount: int):
-	hp -= amount
-	hp = max(hp, 0)
-	_update_bars()
-
-func use_stamina(amount: int):
-	stamina -= amount
-	stamina = max(stamina, 0)
-	_update_bars()
-
-func _update_bars():
-	if hp_bar:
-		hp_bar.value = hp
-	if stamina_bar:
-		stamina_bar.value = stamina
-"
-
 [node name="RiftboundWarrior" type="CharacterBody2D" node_paths=PackedStringArray("animated_sprite", "portal_sprite", "hp_bar", "stamina_bar")]
+position = Vector2(483, 272)
 script = ExtResource("1_rbiwf")
 animated_sprite = NodePath("AnimatedSprite2D")
 portal_sprite = NodePath("Portal/AnimatedSprite2D")
 hp_bar = NodePath("UI/Bars/HPBar")
 stamina_bar = NodePath("UI/Bars/StaminaBar")
 
-[node name="Bullets" type="Node2D" parent="."]
-
-[node name="Bullet" parent="Bullets" instance=ExtResource("2_r2eex")]
-
-[node name="Portal" type="Node2D" parent="."]
-
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Portal"]
-sprite_frames = SubResource("SpriteFrames_uq2ii")
-animation = &"diagonal"
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, 2)
-shape = SubResource("CapsuleShape2D_mwdwu")
-
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-sprite_frames = SubResource("SpriteFrames_ydx7i")
-animation = &"slide_left"
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(0, 1)
+zoom = Vector2(2, 2)
 
 [node name="UI" type="CanvasLayer" parent="."]
-follow_viewport_enabled = true
 
 [node name="Bars" type="Control" parent="UI"]
+clip_contents = true
 layout_mode = 3
 anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
-offset_top = -119.0
-offset_right = 138.0
+offset_left = 4.0
+offset_top = -381.0
+offset_right = 142.0
+offset_bottom = -262.0
 grow_vertical = 0
+scale = Vector2(3, 3)
 theme = SubResource("Theme_33cla")
 
 [node name="HPBorder" type="Sprite2D" parent="UI/Bars"]
@@ -3360,6 +3350,24 @@ tint_progress = Color(0.112427, 0.456625, 0.574546, 1)
 script = SubResource("GDScript_pblig")
 hp_bar = NodePath("../HPBar")
 stamina_bar = NodePath(".")
+
+[node name="Bullets" type="Node2D" parent="."]
+
+[node name="Bullet" parent="Bullets" instance=ExtResource("2_r2eex")]
+
+[node name="Portal" type="Node2D" parent="."]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Portal"]
+sprite_frames = SubResource("SpriteFrames_uq2ii")
+animation = &"diagonal"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 2)
+shape = SubResource("CapsuleShape2D_mwdwu")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_ydx7i")
+animation = &"slide_left"
 
 [node name="StateChart" type="Node" parent="."]
 script = ExtResource("1_ehayp")
