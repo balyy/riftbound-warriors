@@ -70,23 +70,27 @@ func _physics_process(delta: float):
 		velocity = direction * slide_speed
 		animated_sprite.play("slide_" + get_direction_name(direction))
 
-	elif Input.is_action_just_pressed("roll"):
-		if stamina >= 20:
+	# Ha slide közben próbálunk roll-olni
+	elif Input.is_action_just_pressed("roll") and stamina >= 20:
+		if not is_rolling:  # Csak akkor roll-olhat, ha nem rolling
+			# Ha csúszás közben vagyunk, akkor boostolt roll
+			if is_sliding:
+				velocity = direction * boosted_roll_speed
+			else:
+				velocity = direction * roll_speed
 			is_rolling = true
 			roll_timer = roll_duration
-			roll_velocity = direction * roll_speed
-			velocity = roll_velocity
 			animated_sprite.play("roll_" + get_direction_name(direction))
 			stamina -= 20  # Roll 20 staminát fogyaszt
 
-	elif Input.is_action_pressed("run"):
-		if stamina > 0:
-			velocity = direction * speed * run_multiplier
-			animated_sprite.play("run_" + get_direction_name(direction))
-			stamina -= stamina_drain_rate * delta  # Futás közben fél másodpercenként 1 fogy
-		else:
-			velocity = direction * speed
-			animated_sprite.play("walk_" + get_direction_name(direction))
+	# Futás
+	elif Input.is_action_pressed("run") and stamina > 0:
+		velocity = direction * speed * run_multiplier
+		animated_sprite.play("run_" + get_direction_name(direction))
+		stamina -= stamina_drain_rate * delta  # Futás közben fogy a stamina
+	elif Input.is_action_pressed("run") and stamina <= 0:
+		velocity = direction * speed  # Ha nincs stamina, akkor csak séta
+		animated_sprite.play("walk_" + get_direction_name(direction))
 
 	elif input_vector != Vector2.ZERO:
 		velocity = direction * speed
@@ -96,11 +100,11 @@ func _physics_process(delta: float):
 		velocity = Vector2.ZERO
 		animated_sprite.play("idle_" + get_direction_name(direction))
 
-	# Stamina regeneráció
+	# Stamina regenerálódás (ha nem csúszik vagy roll-ol)
 	if not is_sliding and not is_rolling:
 		stamina = min(stamina + stamina_regen_rate * delta, max_stamina)
 
-	# Frissítsük a UI-t
+	# Frissítjük a UI-t
 	hp_bar.value = hp
 	stamina_bar.value = stamina
 
@@ -128,49 +132,3 @@ func get_direction_name(dir: Vector2) -> String:
 	elif dir.x < 0:
 		return "left"
 	return "down"
-
-# --- PORTÁL KEZELÉS ---
-func _process(delta):
-	var mouse_pos = get_global_mouse_position()
-	var direction = (mouse_pos - global_position).normalized()
-	var portal_distance = 20
-
-	$Portal.position = direction * portal_distance
-
-	var angle = rad_to_deg(atan2(direction.y, direction.x))
-	if (-22.5 <= angle and angle < 22.5) or (157.5 <= angle or angle < -157.5):
-		$Portal/AnimatedSprite2D.play("horizontal")
-	elif (67.5 <= angle and angle < 112.5) or (-112.5 <= angle and angle < -67.5):
-		$Portal/AnimatedSprite2D.play("vertical")
-	else:
-		$Portal/AnimatedSprite2D.play("diagonal")
-
-	# Lövedékek mozgatása
-	for bullet in $Bullets.get_children():
-		if bullet.has_meta("direction") and bullet.has_meta("speed"):
-			direction = bullet.get_meta("direction")
-			var speed = bullet.get_meta("speed")
-			bullet.position += direction * speed * delta
-
-	if Input.is_action_just_pressed("fire"):
-		shoot()
-
-func shoot():
-	if not $Bullets/Bullet:
-		push_error("Bullet node is missing!")
-		return
-
-	var bullet = $Bullets/Bullet.duplicate()
-	bullet.visible = true
-	$Bullets.add_child(bullet)
-
-	bullet.global_position = $Portal.global_position
-
-	var shot_direction = (get_global_mouse_position() - bullet.global_position).normalized()
-	bullet.set_meta("direction", shot_direction)
-
-	bullet.rotation = shot_direction.angle()
-
-	bullet.set_meta("speed", 30.0)
-	await get_tree().create_timer(5.0).timeout
-	bullet.queue_free()

@@ -1,4 +1,4 @@
-[gd_scene load_steps=524 format=3 uid="uid://b0k1juufg2oh3"]
+[gd_scene load_steps=470 format=3 uid="uid://b0k1juufg2oh3"]
 
 [ext_resource type="Texture2D" uid="uid://dfkt0j3iq88ly" path="res://player/Animations/Run/run_south.png" id="1_a6hpv"]
 [ext_resource type="Texture2D" uid="uid://daa3tjrc3t735" path="res://player/Animations/Walk/walk_east.png" id="1_bva4w"]
@@ -12,305 +12,44 @@
 [ext_resource type="Script" uid="uid://bsyy1lon2c1u2" path="res://addons/godot_state_charts/compound_state.gd" id="2_j5ql6"]
 [ext_resource type="Texture2D" uid="uid://bt8ner7nfrj7l" path="res://player/Animations/Roll/roll_southwest.png" id="2_jvd44"]
 [ext_resource type="Texture2D" uid="uid://ctx3wbomer4tv" path="res://player/Static/portal-Sheet.png" id="2_pblig"]
+[ext_resource type="PackedScene" uid="uid://b8crxlfp67kc7" path="res://player/bullet.tscn" id="2_r2eex"]
 [ext_resource type="Texture2D" uid="uid://n8xtlwy64qnm" path="res://player/Animations/Melee/melee_southwest.png" id="2_rbiwf"]
 [ext_resource type="Texture2D" uid="uid://d0k0lp5egcsev" path="res://player/Animations/Run/run_southwest.png" id="2_vbwoc"]
 [ext_resource type="Texture2D" uid="uid://wc3vb31r4jje" path="res://player/Animations/Melee/melee_southwest_reversed.png" id="3_3v65f"]
 [ext_resource type="Texture2D" uid="uid://catx44wfx8x0c" path="res://player/Animations/Roll/roll_southeast.png" id="3_6j62o"]
 [ext_resource type="Texture2D" uid="uid://bnjntphjt4laf" path="res://player/Animations/Run/run_southeast.png" id="3_ddluj"]
-[ext_resource type="Texture2D" uid="uid://dtaohfp4uqs7d" path="res://player/Projectile/Bolt/bolt1.png" id="3_dituo"]
 [ext_resource type="Script" uid="uid://bc5wsr2x31ftx" path="res://addons/godot_state_charts/atomic_state.gd" id="3_v35wr"]
 [ext_resource type="Texture2D" uid="uid://dapq57qx2a5rj" path="res://player/Animations/Roll/roll_west.png" id="4_5g8vn"]
-[ext_resource type="Texture2D" uid="uid://buaj2i3kfsy04" path="res://player/Projectile/Bolt/bolt2.png" id="4_fhghf"]
 [ext_resource type="Texture2D" uid="uid://ce2ckd55hhdxg" path="res://player/Animations/Melee/melee_southeast.png" id="4_n3bhy"]
 [ext_resource type="Texture2D" uid="uid://dqw562mxmdm0s" path="res://player/Animations/Run/run_west.png" id="4_wt8r1"]
-[ext_resource type="Texture2D" uid="uid://bqv30s800ecxs" path="res://player/Projectile/Bolt/bolt3.png" id="5_ktaro"]
 [ext_resource type="Texture2D" uid="uid://dj3f1klvtwaui" path="res://player/Animations/Run/run_east.png" id="5_kwo8v"]
 [ext_resource type="Texture2D" uid="uid://bs2wxi8ehy5j5" path="res://player/Animations/Melee/melee_southeast_reversed.png" id="5_pblig"]
 [ext_resource type="Texture2D" uid="uid://c8lmo8ahfx7tq" path="res://player/Animations/Roll/roll_east.png" id="5_sm15y"]
-[ext_resource type="Texture2D" uid="uid://l3u2cmdxp3st" path="res://player/Projectile/Charged/charged1.png" id="6_33cla"]
 [ext_resource type="Texture2D" uid="uid://cxfjg4qs807js" path="res://player/Animations/Melee/melee_west.png" id="6_pp3p8"]
-[ext_resource type="Texture2D" uid="uid://dhlksa7pdxiwr" path="res://player/Projectile/Bolt/bolt4.png" id="6_tvqri"]
 [ext_resource type="Texture2D" uid="uid://d6s6rhmx4e1l" path="res://player/Animations/Run/run_north.png" id="6_vj4gp"]
-[ext_resource type="Texture2D" uid="uid://dr7tvhuifnoql" path="res://player/Projectile/Charged/charged2.png" id="7_ddmjx"]
 [ext_resource type="Texture2D" uid="uid://drpw4d4yq17o8" path="res://player/Animations/Melee/melee_west_reversed.png" id="7_fn16i"]
 [ext_resource type="Texture2D" uid="uid://b7odx2xa0af05" path="res://player/Animations/Run/run_northwest.png" id="7_g418b"]
 [ext_resource type="Texture2D" uid="uid://04ba68prb7n0" path="res://player/Animations/Roll/roll_northwest.png" id="7_shupp"]
 [ext_resource type="Texture2D" uid="uid://jgt5ffgqqurj" path="res://player/Animations/Melee/melee_east.png" id="8_3yqde"]
 [ext_resource type="Texture2D" uid="uid://c6pqokc7f1ovc" path="res://player/Animations/Run/run_northeast.png" id="8_egsyv"]
-[ext_resource type="Texture2D" uid="uid://bt3wdc1v2t7y4" path="res://player/Projectile/Charged/charged3.png" id="8_ph7i1"]
-[ext_resource type="Texture2D" uid="uid://4koj6tyf7mv8" path="res://player/Projectile/Charged/charged4.png" id="9_5wg2w"]
 [ext_resource type="Texture2D" uid="uid://bo35nkankqahx" path="res://player/Animations/Walk/walk_south.png" id="9_cinvx"]
 [ext_resource type="Texture2D" uid="uid://du2olaomdfbnk" path="res://player/Animations/Melee/melee_east_reversed.png" id="9_rodbk"]
-[ext_resource type="Texture2D" uid="uid://dbqfccalukcjl" path="res://player/Projectile/Charged/charged5.png" id="10_2ydal"]
 [ext_resource type="Texture2D" uid="uid://cbix2pd53311y" path="res://player/Animations/Walk/walk_southwest.png" id="10_jkntk"]
 [ext_resource type="Texture2D" uid="uid://ccbxw6quasaa5" path="res://player/Animations/Melee/melee_north.png" id="10_r2eex"]
-[ext_resource type="Texture2D" uid="uid://ch6dl2jqxengi" path="res://player/Projectile/Charged/charged6.png" id="11_05gni"]
 [ext_resource type="Texture2D" uid="uid://cjf7kjgtdpvio" path="res://player/Animations/Melee/melee_northwest.png" id="11_dituo"]
 [ext_resource type="Texture2D" uid="uid://bwuomy5qrxxks" path="res://player/Animations/Walk/walk_southeast.png" id="11_to03h"]
 [ext_resource type="Texture2D" uid="uid://duu4uc6xym8t6" path="res://player/Animations/Melee/melee_northwest_reversed.png" id="12_fhghf"]
 [ext_resource type="Texture2D" uid="uid://c3e2lq6mdfojk" path="res://player/Animations/Walk/walk_west.png" id="12_mq6uc"]
-[ext_resource type="Texture2D" uid="uid://b48kryh48qd4h" path="res://player/Projectile/Crossed/crossed1.png" id="12_w08xc"]
-[ext_resource type="Texture2D" uid="uid://b0ffbm10inlsp" path="res://player/Projectile/Crossed/crossed2.png" id="13_67n83"]
 [ext_resource type="Texture2D" uid="uid://c68fppfmm5s4q" path="res://player/Animations/Melee/melee_northeast.png" id="13_ktaro"]
-[ext_resource type="Texture2D" uid="uid://vsnesi2hvxp5" path="res://player/Projectile/Crossed/crossed3.png" id="14_p2pcn"]
 [ext_resource type="Texture2D" uid="uid://cemxuyij7s04g" path="res://player/Animations/Walk/walk_north.png" id="14_salwe"]
 [ext_resource type="Texture2D" uid="uid://dmlgv5ehsvbnd" path="res://player/Animations/Melee/melee_northeast_reversed.png" id="14_tvqri"]
 [ext_resource type="Texture2D" uid="uid://ds5kq7a8x0ik6" path="res://player/Animations/Walk/walk_northwest.png" id="15_7yr4u"]
-[ext_resource type="Texture2D" uid="uid://327stvlkcycs" path="res://player/Projectile/Crossed/crossed4.png" id="15_jvl2f"]
-[ext_resource type="Texture2D" uid="uid://b0pj12bxxpnpu" path="res://player/Projectile/Crossed/crossed5.png" id="16_fjp3k"]
 [ext_resource type="Texture2D" uid="uid://de2ffsqaan3g" path="res://player/Animations/Walk/walk_northeast.png" id="16_uhgpk"]
-[ext_resource type="Texture2D" uid="uid://d0l5jte7islkw" path="res://player/Projectile/Crossed/crossed6.png" id="17_eu81e"]
-[ext_resource type="Texture2D" uid="uid://dflbfw412lsjc" path="res://player/Projectile/Pulse/pulse1.png" id="18_8ncct"]
-[ext_resource type="Texture2D" uid="uid://fu8utshf08md" path="res://player/Projectile/Pulse/pulse2.png" id="19_6e55s"]
-[ext_resource type="Texture2D" uid="uid://8mrjknvjx5xr" path="res://player/Projectile/Pulse/pulse3.png" id="20_mtcwv"]
-[ext_resource type="Texture2D" uid="uid://dnhyt2tdouw32" path="res://player/Projectile/Pulse/pulse4.png" id="21_71op1"]
-[ext_resource type="Texture2D" uid="uid://dtjuje6ct1bru" path="res://player/Projectile/Spark/spark-preview1.png" id="22_bqidn"]
-[ext_resource type="Texture2D" uid="uid://bsxlcgjssl3cf" path="res://player/Projectile/Spark/spark-preview2.png" id="23_qkcqw"]
-[ext_resource type="Texture2D" uid="uid://ctre8q08k1fx0" path="res://player/Projectile/Spark/spark-preview3.png" id="24_pelt0"]
-[ext_resource type="Texture2D" uid="uid://bd88xld67axl" path="res://player/Projectile/Spark/spark-preview4.png" id="25_px0up"]
-[ext_resource type="Texture2D" uid="uid://dnfe4ynh6tdgu" path="res://player/Projectile/Spark/spark-preview5.png" id="26_ixnsn"]
-[ext_resource type="Texture2D" uid="uid://dsyi8u082wxsl" path="res://player/Projectile/Waveform/waveform1.png" id="27_cja2h"]
-[ext_resource type="Texture2D" uid="uid://7mvxce4b774i" path="res://player/Projectile/Waveform/waveform2.png" id="28_bori6"]
-[ext_resource type="Texture2D" uid="uid://b5lwe26by23ct" path="res://player/Projectile/Waveform/waveform3.png" id="29_i45rb"]
-[ext_resource type="Texture2D" uid="uid://cootagq5j88l2" path="res://player/Projectile/Waveform/waveform4.png" id="30_ved27"]
 [ext_resource type="Texture2D" uid="uid://b83ybkbd2uuq0" path="res://player/Static/slide.png" id="33_n3bhy"]
-[ext_resource type="Script" uid="uid://b7eruajfgt6u" path="res://player/HealthStaminaBar.gd" id="72_ddmjx"]
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_uq2ii"]
-atlas = ExtResource("3_dituo")
-region = Rect2(0, 0, 48, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_bgfl2"]
-atlas = ExtResource("4_fhghf")
-region = Rect2(0, 0, 48, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_j0fdn"]
-atlas = ExtResource("5_ktaro")
-region = Rect2(0, 0, 48, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_y1wbi"]
-atlas = ExtResource("6_tvqri")
-region = Rect2(0, 0, 48, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_c7ks4"]
-atlas = ExtResource("6_33cla")
-region = Rect2(0, 0, 63, 48)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_b1t5c"]
-atlas = ExtResource("7_ddmjx")
-region = Rect2(0, 0, 63, 48)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_dbou2"]
-atlas = ExtResource("8_ph7i1")
-region = Rect2(0, 0, 63, 48)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_65dbx"]
-atlas = ExtResource("9_5wg2w")
-region = Rect2(0, 0, 63, 48)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_lrxvj"]
-atlas = ExtResource("10_2ydal")
-region = Rect2(0, 0, 63, 48)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_o4vet"]
-atlas = ExtResource("11_05gni")
-region = Rect2(0, 0, 63, 48)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_5btop"]
-atlas = ExtResource("12_w08xc")
-region = Rect2(0, 0, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_f6hi7"]
-atlas = ExtResource("13_67n83")
-region = Rect2(0, 0, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_xvlv4"]
-atlas = ExtResource("14_p2pcn")
-region = Rect2(0, 0, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_rxp52"]
-atlas = ExtResource("15_jvl2f")
-region = Rect2(0, 0, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_eb2tw"]
-atlas = ExtResource("16_fjp3k")
-region = Rect2(0, 0, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_mbvve"]
-atlas = ExtResource("17_eu81e")
-region = Rect2(0, 0, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_ypnaq"]
-atlas = ExtResource("18_8ncct")
-region = Rect2(0, 0, 63, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_eijma"]
-atlas = ExtResource("19_6e55s")
-region = Rect2(0, 0, 63, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_236s5"]
-atlas = ExtResource("20_mtcwv")
-region = Rect2(0, 0, 63, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_epqp5"]
-atlas = ExtResource("21_71op1")
-region = Rect2(0, 0, 63, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_3col8"]
-atlas = ExtResource("22_bqidn")
-region = Rect2(0, 0, 63, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_eu5sv"]
-atlas = ExtResource("23_qkcqw")
-region = Rect2(0, 0, 63, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_ihjma"]
-atlas = ExtResource("24_pelt0")
-region = Rect2(0, 0, 63, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_bt870"]
-atlas = ExtResource("25_px0up")
-region = Rect2(0, 0, 63, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_m1v60"]
-atlas = ExtResource("26_ixnsn")
-region = Rect2(0, 0, 63, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_w51o1"]
-atlas = ExtResource("27_cja2h")
-region = Rect2(0, 0, 95, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_48cws"]
-atlas = ExtResource("28_bori6")
-region = Rect2(0, 0, 95, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_nd34j"]
-atlas = ExtResource("29_i45rb")
-region = Rect2(0, 0, 95, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_y37ip"]
-atlas = ExtResource("30_ved27")
-region = Rect2(0, 0, 95, 32)
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_pblig"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_uq2ii")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_bgfl2")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_j0fdn")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_y1wbi")
-}],
-"loop": true,
-"name": &"bolt",
-"speed": 10.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_c7ks4")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_b1t5c")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_dbou2")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_65dbx")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_lrxvj")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_o4vet")
-}],
-"loop": true,
-"name": &"charged",
-"speed": 10.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_5btop")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_f6hi7")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_xvlv4")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_rxp52")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_eb2tw")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_mbvve")
-}],
-"loop": true,
-"name": &"crossed",
-"speed": 10.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_ypnaq")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_eijma")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_236s5")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_epqp5")
-}],
-"loop": true,
-"name": &"pulse",
-"speed": 10.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_3col8")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_eu5sv")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_ihjma")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_bt870")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_m1v60")
-}],
-"loop": true,
-"name": &"spark",
-"speed": 10.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_w51o1")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_48cws")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_nd34j")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_y37ip")
-}],
-"loop": true,
-"name": &"waveform",
-"speed": 10.0
-}]
+[ext_resource type="Texture2D" uid="uid://5mm23lqmromu" path="res://player/HealthStaminaBar/glitchhealthbar.png" id="43_rodbk"]
+[ext_resource type="Texture2D" uid="uid://dmfxlap15ex63" path="res://player/HealthStaminaBar/glitch staminabar.png" id="44_r2eex"]
+[ext_resource type="Texture2D" uid="uid://cbgex4e75m3qn" path="res://player/HealthStaminaBar/innerBar_health.png" id="45_dituo"]
+[ext_resource type="Texture2D" uid="uid://guf06buu4l6t" path="res://player/HealthStaminaBar/innerBar_stamina.png" id="46_fhghf"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_tu3x2"]
 atlas = ExtResource("2_pblig")
@@ -3507,6 +3246,45 @@ animations = [{
 
 [sub_resource type="Theme" id="Theme_33cla"]
 
+[sub_resource type="GDScript" id="GDScript_pblig"]
+script/source = "extends Control
+
+@export var hp_bar: TextureProgressBar
+@export var stamina_bar: TextureProgressBar
+
+var max_hp: int = 100
+var max_stamina: int = 100
+var hp: int = max_hp
+var stamina: int = max_stamina
+var stamina_regen_rate: float = 5.0  
+
+func _ready():
+	_update_bars()
+	
+func _process(delta):
+	# Stamina regeneráció
+	if stamina < max_stamina:
+		stamina += stamina_regen_rate * delta
+		stamina = min(stamina, max_stamina)
+		_update_bars()
+
+func take_damage(amount: int):
+	hp -= amount
+	hp = max(hp, 0)
+	_update_bars()
+
+func use_stamina(amount: int):
+	stamina -= amount
+	stamina = max(stamina, 0)
+	_update_bars()
+
+func _update_bars():
+	if hp_bar:
+		hp_bar.value = hp
+	if stamina_bar:
+		stamina_bar.value = stamina
+"
+
 [node name="RiftboundWarrior" type="CharacterBody2D" node_paths=PackedStringArray("animated_sprite", "portal_sprite", "hp_bar", "stamina_bar")]
 script = ExtResource("1_rbiwf")
 animated_sprite = NodePath("AnimatedSprite2D")
@@ -3516,12 +3294,7 @@ stamina_bar = NodePath("UI/Bars/StaminaBar")
 
 [node name="Bullets" type="Node2D" parent="."]
 
-[node name="Bullet" type="AnimatedSprite2D" parent="Bullets"]
-visible = false
-position = Vector2(19, 13.5)
-scale = Vector2(0.125, 0.15625)
-sprite_frames = SubResource("SpriteFrames_pblig")
-animation = &"bolt"
+[node name="Bullet" parent="Bullets" instance=ExtResource("2_r2eex")]
 
 [node name="Portal" type="Node2D" parent="."]
 
@@ -3542,34 +3315,51 @@ follow_viewport_enabled = true
 
 [node name="Bars" type="Control" parent="UI"]
 layout_mode = 3
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -119.0
+offset_right = 138.0
+grow_vertical = 0
 theme = SubResource("Theme_33cla")
 
-[node name="HPBar" type="TextureProgressBar" parent="UI/Bars"]
+[node name="HPBorder" type="Sprite2D" parent="UI/Bars"]
+position = Vector2(64, 68)
+texture = ExtResource("43_rodbk")
+
+[node name="StaminaBorder" type="Sprite2D" parent="UI/Bars"]
+position = Vector2(65, 96)
+texture = ExtResource("44_r2eex")
+
+[node name="HPBar" type="TextureProgressBar" parent="UI/Bars" node_paths=PackedStringArray("hp_bar", "stamina_bar")]
 layout_mode = 0
-offset_left = 16.0
-offset_top = 42.0
-offset_right = 56.0
-offset_bottom = 67.0
+offset_left = 41.0
+offset_top = 66.0
+offset_right = 120.0
+offset_bottom = 72.0
 value = 100.0
+texture_progress = ExtResource("45_dituo")
 tint_under = Color(0, 0, 0, 1)
 tint_over = Color(1, 0.631373, 0, 1)
 tint_progress = Color(1, 0, 0, 1)
-script = ExtResource("72_ddmjx")
+script = SubResource("GDScript_pblig")
+hp_bar = NodePath(".")
+stamina_bar = NodePath("../StaminaBar")
 
-[node name="StaminaBar" type="TextureProgressBar" parent="UI/Bars"]
+[node name="StaminaBar" type="TextureProgressBar" parent="UI/Bars" node_paths=PackedStringArray("hp_bar", "stamina_bar")]
 layout_mode = 0
-offset_left = 20.0
-offset_top = 79.0
-offset_right = 60.0
-offset_bottom = 119.0
+offset_left = 42.0
+offset_top = 94.0
+offset_right = 120.0
+offset_bottom = 100.0
 value = 100.0
+texture_progress = ExtResource("46_fhghf")
 tint_under = Color(0, 0, 0, 1)
 tint_over = Color(0.466035, 0.0019311, 0.711314, 1)
 tint_progress = Color(0.112427, 0.456625, 0.574546, 1)
-script = ExtResource("72_ddmjx")
+script = SubResource("GDScript_pblig")
+hp_bar = NodePath("../HPBar")
+stamina_bar = NodePath(".")
 
 [node name="StateChart" type="Node" parent="."]
 script = ExtResource("1_ehayp")

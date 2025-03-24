@@ -1,40 +1,27 @@
-extends CharacterBody2D
+extends Node2D
 
-@export var speed: float = 500.0  # Lövedék sebessége
-@export var lifetime: float = 3.0  # Meddig marad meg a lövedék?
+@export var speed: float = 400.0  # A lövedék sebessége
+@export var direction: Vector2 = Vector2.ZERO  # A lövedék iránya
 
-var direction: Vector2 = Vector2.ZERO
+var lifetime: float = 5.0  # A lövedék élettartama
+var time_alive: float = 0.0  # A lövedék életének ideje
 
+# A lövedék mozgása
 func _ready():
-	# Elindítja az animációt
-	$AnimatedSprite2D.play("default") 
-	
-	# Időzítő a lövedék eltüntetésére
-	await get_tree().create_timer(lifetime).timeout
-	queue_free()
-
-func _physics_process(delta):
-	if direction == Vector2.ZERO:
-		return
-	
-	# Lövedék mozgatása
-	velocity = direction * speed
-	move_and_slide()
-
-func set_direction(new_direction: Vector2):
-	direction = new_direction.normalized()
-	update_animation(direction)
-
-func update_animation(dir: Vector2):
-	var angle = rad_to_deg(atan2(dir.y, dir.x))
-
-	if (-22.5 <= angle and angle < 22.5) or (157.5 <= angle or angle < -157.5):
-		$AnimatedSprite2D.play("horizontal")  # Balra vagy jobbra
-	elif (67.5 <= angle and angle < 112.5) or (-112.5 <= angle and angle < -67.5):
-		$AnimatedSprite2D.play("vertical")  # Felfelé vagy lefelé
+	# Kezdeti irány beállítása
+	if direction != Vector2.ZERO:
+		rotation = direction.angle()  # Beállítjuk a lövedék irányát
 	else:
-		$AnimatedSprite2D.play("diagonal")  # Átlós mozgás
+		# Alapértelmezett irány (pl. felfelé)
+		direction = Vector2.UP
 
-func _on_body_entered(body):
-	# Ha a lövedék beleütközik valamibe, eltűnik
-	queue_free()
+func _process(delta: float):
+	# A lövedék mozgása
+	position += direction * speed * delta
+	
+	# Élettartam csökkentése
+	time_alive += delta
+	
+	# Ha a lövedék élettartama lejár, eltávolítjuk
+	if time_alive >= lifetime:
+		queue_free()
