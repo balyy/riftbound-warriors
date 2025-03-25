@@ -285,6 +285,7 @@ custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
 item_count = 3
 popup/item_0/text = "Test"
+popup/item_0/id = 0
 popup/item_1/text = "Test2"
 popup/item_1/id = 1
 popup/item_2/text = "Test3"
