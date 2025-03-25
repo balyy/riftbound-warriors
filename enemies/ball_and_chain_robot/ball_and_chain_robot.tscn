@@ -1,11 +1,11 @@
 [gd_scene load_steps=40 format=3 uid="uid://b2nm8jnor4ueh"]
 
-[ext_resource type="Script" path="res://enemies/ball_and_chain_robot/ball_and_chain_robot.gd" id="1_afi7a"]
+[ext_resource type="Script" uid="uid://dillwy0hsu6mg" path="res://enemies/ball_and_chain_robot/ball_and_chain_robot.gd" id="1_afi7a"]
 [ext_resource type="Texture2D" uid="uid://c7etdjw6fgqu" path="res://enemies/ball_and_chain_robot/full_sheet.png" id="1_b0ujy"]
-[ext_resource type="Script" path="res://addons/godot_state_charts/state_chart.gd" id="2_dltbl"]
-[ext_resource type="Script" path="res://addons/godot_state_charts/compound_state.gd" id="3_k4wyh"]
-[ext_resource type="Script" path="res://addons/godot_state_charts/atomic_state.gd" id="4_opmk6"]
-[ext_resource type="Script" path="res://addons/godot_state_charts/transition.gd" id="6_eften"]
+[ext_resource type="Script" uid="uid://d0mfx2dwrtmui" path="res://addons/godot_state_charts/state_chart.gd" id="2_dltbl"]
+[ext_resource type="Script" uid="uid://bck5umrny8mis" path="res://addons/godot_state_charts/compound_state.gd" id="3_k4wyh"]
+[ext_resource type="Script" uid="uid://dt44tx1t3vham" path="res://addons/godot_state_charts/atomic_state.gd" id="4_opmk6"]
+[ext_resource type="Script" uid="uid://g6ouw8elguc4" path="res://addons/godot_state_charts/transition.gd" id="6_eften"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_aeha8"]
 height = 26.0
@@ -245,11 +245,12 @@ border_color = Color(0.0807833, 0.0807833, 0.0807833, 1)
 [node name="BallAndChainRobot" type="CharacterBody2D" node_paths=PackedStringArray("sprite")]
 z_index = 1
 y_sort_enabled = true
-collision_layer = 2
+collision_mask = 2
 script = ExtResource("1_afi7a")
 sprite = NodePath("AnimatedSprite2D")
 
 [node name="HitBox" type="CollisionShape2D" parent="."]
+visible = false
 position = Vector2(0, -1)
 shape = SubResource("CapsuleShape2D_aeha8")
 
@@ -262,12 +263,15 @@ autoplay = "idle"
 [node name="DetectionBox" type="Area2D" parent="."]
 visible = false
 collision_layer = 0
+collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionBox"]
 shape = SubResource("CircleShape2D_1noyc")
 
 [node name="AttackBox" type="Area2D" parent="."]
+visible = false
 collision_layer = 0
+collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AttackBox"]
 position = Vector2(21, 3)
@@ -331,6 +335,7 @@ delay_in_seconds = "0"
 
 [node name="HealthBar" type="ProgressBar" parent="."]
 unique_name_in_owner = true
+visible = false
 offset_left = -15.0
 offset_top = -20.0
 offset_right = 15.0

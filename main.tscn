@@ -1,10 +1,10 @@
 [gd_scene load_steps=8 format=3 uid="uid://cpee42km1830x"]
 
-[ext_resource type="Script" path="res://main.gd" id="1_788q0"]
+[ext_resource type="Script" uid="uid://d1j2spdovfqnf" path="res://main.gd" id="1_788q0"]
 [ext_resource type="PackedScene" uid="uid://bcwkugn6v3oy7" path="res://addons/godot_state_charts/utilities/state_chart_debugger.tscn" id="2_srhp5"]
-[ext_resource type="Script" path="res://test_enemy.gd" id="4_cppei"]
+[ext_resource type="Script" uid="uid://deec7m1ib5soh" path="res://test_enemy.gd" id="4_cppei"]
 [ext_resource type="Texture2D" uid="uid://c36gii7wsc7ic" path="res://icon.svg" id="5_aha1o"]
-[ext_resource type="Script" path="res://button.gd" id="6_77x7c"]
+[ext_resource type="Script" uid="uid://c3krkj84hbxxd" path="res://button.gd" id="6_77x7c"]
 [ext_resource type="PackedScene" uid="uid://dee4i8u3ro3xv" path="res://player/player.tscn" id="7_x7fa1"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6n357"]

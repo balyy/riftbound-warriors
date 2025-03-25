@@ -1,11 +1,11 @@
 [gd_scene load_steps=11 format=3 uid="uid://dee4i8u3ro3xv"]
 
-[ext_resource type="Script" path="res://player/player.gd" id="1_2d56r"]
+[ext_resource type="Script" uid="uid://oc0bbooouafn" path="res://player/player.gd" id="1_2d56r"]
 [ext_resource type="Texture2D" uid="uid://bhk7wi4l3nbxy" path="res://player/player.png" id="2_pgs3d"]
-[ext_resource type="Script" path="res://addons/godot_state_charts/state_chart.gd" id="3_r2ot3"]
-[ext_resource type="Script" path="res://addons/godot_state_charts/compound_state.gd" id="4_2mwx8"]
-[ext_resource type="Script" path="res://addons/godot_state_charts/atomic_state.gd" id="5_birmx"]
-[ext_resource type="Script" path="res://addons/godot_state_charts/transition.gd" id="6_vddst"]
+[ext_resource type="Script" uid="uid://d0mfx2dwrtmui" path="res://addons/godot_state_charts/state_chart.gd" id="3_r2ot3"]
+[ext_resource type="Script" uid="uid://bck5umrny8mis" path="res://addons/godot_state_charts/compound_state.gd" id="4_2mwx8"]
+[ext_resource type="Script" uid="uid://dt44tx1t3vham" path="res://addons/godot_state_charts/atomic_state.gd" id="5_birmx"]
+[ext_resource type="Script" uid="uid://g6ouw8elguc4" path="res://addons/godot_state_charts/transition.gd" id="6_vddst"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7v6y7"]
 size = Vector2(18, 18)
