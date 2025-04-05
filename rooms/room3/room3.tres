@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="Room" load_steps=2 format=3 uid="uid://l7bng5h0fga7"]
+
+[ext_resource type="Script" uid="uid://b52lapng5osrk" path="res://rooms/base_room.gd" id="1_akyhg"]
+
+[resource]
+script = ExtResource("1_akyhg")
+room_entered = false
+enemies_count = 0
+metadata/_custom_type_script = "uid://b52lapng5osrk"

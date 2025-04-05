@@ -11,7 +11,6 @@ func _ready() -> void:
 
 func _process(_delta: float) -> void:
 	check_detection_box_occupation()
-	z_index = global_position.y
 
 
 func to_vector2(target):

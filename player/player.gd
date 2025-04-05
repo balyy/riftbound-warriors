@@ -16,17 +16,12 @@ func get_input():
 
 var facing = Direction.RIGHT
 func rotate_character(input):
-	print("rotate character")
 	if input.x < 0 && facing == Direction.RIGHT:
 		scale.x *= -1
 		facing = Direction.LEFT
-		print(input.x)
-		print("input.x < 0")
 	if input.x > 0 && facing == Direction.LEFT:
 		scale.x *= -1
 		facing = Direction.RIGHT
-		print(input.x)
-		print("input.x > 0")
 	
 
 func move(delta):

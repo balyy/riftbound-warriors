@@ -1,0 +1,23 @@
+[gd_scene load_steps=3 format=4 uid="uid://clygg5ot46ke3"]
+
+[ext_resource type="TileSet" uid="uid://b4q5t64nhbqfm" path="res://rooms/tileset.tres" id="1_aviys"]
+[ext_resource type="Script" uid="uid://dbgebt4qjq0e6" path="res://rooms/room0/room_0.gd" id="1_ix2ew"]
+
+[node name="Room0" type="Node2D" node_paths=PackedStringArray("connection_point")]
+script = ExtResource("1_ix2ew")
+connection_point = NodePath("EndConnectionPoint")
+
+[node name="TileMapLayer" type="TileMapLayer" parent="."]
+tile_map_data = PackedByteArray("AAAAAP//AgAgAAIAAAD/////AgAgAAIAAAD//wAAAgAgAAIAAAAAAAAAAgAgAAIAAAD+////AgAiAAEAAAD+/wAAAgAiAAEAAAABAP//AgAiAAEAAAABAAAAAgAiAAEAAAD//wEAAgAiAAEAAAAAAAEAAgAiAAEAAAAAAP7/AgAiAAEAAAD///7/AgAiAAEAAAABAAEAAgAhAAEAAAABAAIAAgAhAAEAAAAAAAIAAgAhAAEAAAD//wIAAgAhAAEAAAD+/wIAAgAhAAEAAAD+/wEAAgAhAAEAAAD9/wEAAgAhAAEAAAD9/wAAAgAhAAEAAAD9////AgAhAAEAAAD9//7/AgAhAAEAAAD+//7/AgAhAAEAAAD///3/AgAhAAEAAAAAAP3/AgAhAAEAAAABAP3/AgAhAAEAAAABAP7/AgAhAAEAAAACAP7/AgAhAAEAAAACAP//AgAhAAEAAAACAAAAAgAhAAEAAAACAAEAAgAhAAEAAAD+//3/AgAhAAEAAAA=")
+tile_set = ExtResource("1_aviys")
+
+[node name="TileMapLayer2" type="TileMapLayer" parent="."]
+tile_map_data = PackedByteArray("AAD///z/AgAFAAAAAAAAAPz/AgAFAAAAAAABAPz/AgAIAAAAAAD+//z/AgACAAAAAAD+//3/AgACAAEAAAD9//3/AgABAAEAAAD9//7/AgABAAIAAAD9////AgABAAIAAAD9/wAAAgABAAIAAAD9/wIAAgABAAkAAAD9/wEAAgABAAgAAAABAP3/AgAIAAEAAAACAP3/AgAJAAEAAAACAAEAAgAJAAQAAAACAAIAAgAJAAcAAAABAAIAAgAIAAkAAAD+/wIAAgACAAkAAAD+/wMAAgACAAoAAAABAAMAAgAIAAoAAAD//wMAAgAFAAoAAAAAAAMAAgAFAAoAAAACAP7/AgAJAAMAAAA=")
+tile_set = ExtResource("1_aviys")
+
+[node name="StartConnectionPoint" type="Marker2D" parent="."]
+unique_name_in_owner = true
+
+[node name="EndConnectionPoint" type="Marker2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(288, 0)

@@ -101,6 +101,7 @@ autostart = true
 
 [node name="LogInPanel" type="PanelContainer" parent="."]
 unique_name_in_owner = true
+visible = false
 z_index = 4096
 custom_minimum_size = Vector2(700, 0)
 layout_mode = 1
@@ -135,7 +136,7 @@ horizontal_alignment = 1
 
 [node name="HSeparator" type="HSeparator" parent="LogInPanel/MarginContainer/VBoxContainer"]
 layout_mode = 2
-theme_override_constants/separation = 10
+theme_override_constants/separation = 40
 
 [node name="EmailLabel" type="Label" parent="LogInPanel/MarginContainer/VBoxContainer"]
 layout_mode = 2
@@ -146,6 +147,10 @@ text = "Email"
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_font_sizes/font_size = 30
+
+[node name="Control3" type="Control" parent="LogInPanel/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 2
 
 [node name="PasswordLabel" type="Label" parent="LogInPanel/MarginContainer/VBoxContainer"]
 layout_mode = 2
@@ -207,7 +212,6 @@ one_shot = true
 
 [node name="SignUpPanel" type="PanelContainer" parent="."]
 unique_name_in_owner = true
-visible = false
 z_index = 4096
 custom_minimum_size = Vector2(700, 0)
 layout_mode = 1
@@ -242,7 +246,7 @@ horizontal_alignment = 1
 
 [node name="HSeparator" type="HSeparator" parent="SignUpPanel/MarginContainer/VBoxContainer"]
 layout_mode = 2
-theme_override_constants/separation = 10
+theme_override_constants/separation = 40
 
 [node name="EmailLabel" type="Label" parent="SignUpPanel/MarginContainer/VBoxContainer"]
 layout_mode = 2
@@ -253,6 +257,10 @@ text = "Email"
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_font_sizes/font_size = 30
+
+[node name="Control3" type="Control" parent="SignUpPanel/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
 
 [node name="PasswordLabel" type="Label" parent="SignUpPanel/MarginContainer/VBoxContainer"]
 layout_mode = 2
@@ -265,6 +273,10 @@ layout_mode = 2
 theme_override_font_sizes/font_size = 30
 secret = true
 
+[node name="Control4" type="Control" parent="SignUpPanel/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+
 [node name="UsernameLabel" type="Label" parent="SignUpPanel/MarginContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 30
@@ -275,7 +287,11 @@ unique_name_in_owner = true
 layout_mode = 2
 theme_override_font_sizes/font_size = 30
 
-[node name="UsernameLabel2" type="Label" parent="SignUpPanel/MarginContainer/VBoxContainer"]
+[node name="Control5" type="Control" parent="SignUpPanel/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+
+[node name="CountryLabel" type="Label" parent="SignUpPanel/MarginContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 30
 text = "Country"

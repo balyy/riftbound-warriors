@@ -29,6 +29,7 @@ animations = [{
 size = Vector2(24, 6)
 
 [node name="Player" type="CharacterBody2D"]
+z_index = 10
 script = ExtResource("1_2d56r")
 
 [node name="Hitbox" type="CollisionShape2D" parent="."]
