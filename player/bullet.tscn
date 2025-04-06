@@ -1,4 +1,4 @@
-[gd_scene load_steps=61 format=3 uid="uid://crffiva62lh3q"]
+[gd_scene load_steps=62 format=3 uid="uid://crffiva62lh3q"]
 
 [ext_resource type="Script" uid="uid://cqmq88pe0qfc5" path="res://player/bullet.gd" id="1_mq7ge"]
 [ext_resource type="Texture2D" uid="uid://dtaohfp4uqs7d" path="res://player/Projectile/Bolt/bolt1.png" id="2_a1dqq"]
@@ -267,14 +267,20 @@ animations = [{
 "speed": 10.0
 }]
 
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_mq7ge"]
+radius = 1.4
+height = 3.6
+
 [node name="Bullet" type="Area2D"]
 script = ExtResource("1_mq7ge")
 
 [node name="Sprite" type="AnimatedSprite2D" parent="."]
-visible = false
-position = Vector2(19, 13.5)
 scale = Vector2(0.125, 0.15625)
 sprite_frames = SubResource("SpriteFrames_hagul")
 animation = &"bolt"
+frame_progress = 0.610218
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(1, 0)
+rotation = 1.57885
+shape = SubResource("CapsuleShape2D_mq7ge")

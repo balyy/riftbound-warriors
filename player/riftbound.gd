@@ -4,6 +4,7 @@ extends CharacterBody2D
 @export var portal_sprite: AnimatedSprite2D
 @export var hp_bar: TextureProgressBar
 @export var stamina_bar: TextureProgressBar
+@export var bullet_scene: PackedScene
 
 @export var speed: float = 100.0
 @export var run_multiplier: float = 1.5
@@ -72,7 +73,7 @@ func _physics_process(delta: float):
 			velocity = direction * boosted_roll_speed
 			animated_sprite.play("roll_" + get_direction_name(direction))
 			stamina -= 20
-			is_sliding = false  # Megszakítja a slide-ot
+			is_sliding = false
 		elif not Input.is_action_pressed("slide") or velocity.length() < 50:
 			is_sliding = false
 	elif Input.is_action_just_pressed("slide"):
@@ -100,12 +101,10 @@ func _physics_process(delta: float):
 	elif input_vector != Vector2.ZERO:
 		velocity = direction * speed
 		animated_sprite.play("walk_" + get_direction_name(direction))
-
 	else:
 		velocity = Vector2.ZERO
 		animated_sprite.play("idle_" + get_direction_name(direction))
 
-	# Stamina regenerálás
 	if not is_sliding and not is_rolling:
 		stamina = min(stamina + stamina_regen_rate * delta, max_stamina)
 
@@ -113,6 +112,49 @@ func _physics_process(delta: float):
 	stamina_bar.value = stamina
 
 	move_and_slide()
+
+func _process(delta: float):
+	# Portál mozgatása az egér irányába
+	var mouse_pos = get_global_mouse_position()
+	var portal_offset = (mouse_pos - global_position).normalized() * 24
+	$Portal.position = portal_offset
+
+	# Portál animáció az irány alapján
+	var angle = portal_offset.angle()
+	var abs_angle = abs(rad_to_deg(angle))
+
+	if (abs_angle < 30 or abs_angle > 150):
+		portal_sprite.play("horizontal")
+	elif (abs_angle >= 60 and abs_angle <= 120):
+		portal_sprite.play("vertical")
+	else:
+		portal_sprite.play("diagonal")
+
+func _unhandled_input(event):
+	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
+		fire_bullet()
+
+func fire_bullet():
+	if not bullet_scene:
+		push_error("Bullet scene nincs hozzárendelve!")
+		return
+
+	# Példányosítjuk a lövedéket
+	var bullet_instance = bullet_scene.instantiate() as Node2D
+
+	# Portál pozícióját a sprite alapján számoljuk
+	var portal_global_pos = portal_sprite.get_global_position()
+	var mouse_pos = get_global_mouse_position()
+	var bullet_direction = (mouse_pos - portal_global_pos).normalized()
+
+	# Beállítások
+	bullet_instance.position = portal_global_pos
+	bullet_instance.direction = bullet_direction
+	bullet_instance.rotation = bullet_direction.angle()
+
+	# Hozzáadjuk a Bullets node-hoz
+	$Bullets.add_child(bullet_instance)
+
 
 func get_direction_name(dir: Vector2) -> String:
 	if dir == Vector2.ZERO:

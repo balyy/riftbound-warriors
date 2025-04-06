@@ -3287,11 +3287,13 @@ animations = [{
 
 [node name="RiftboundWarrior" type="CharacterBody2D" node_paths=PackedStringArray("animated_sprite", "portal_sprite", "hp_bar", "stamina_bar")]
 position = Vector2(483, 272)
+collision_layer = 2
 script = ExtResource("1_rbiwf")
 animated_sprite = NodePath("AnimatedSprite2D")
 portal_sprite = NodePath("Portal/AnimatedSprite2D")
 hp_bar = NodePath("UI/Bars/HPBar")
 stamina_bar = NodePath("UI/Bars/StaminaBar")
+bullet_scene = ExtResource("2_r2eex")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(0, 1)
