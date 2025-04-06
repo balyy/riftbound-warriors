@@ -4,7 +4,7 @@ extends CharacterBody2D
 @export var portal_sprite: AnimatedSprite2D
 @export var hp_bar: TextureProgressBar
 @export var stamina_bar: TextureProgressBar
-@export var bullet_scene: PackedScene
+@export var bullet_scene: PackedScene  # ← FONTOS! Az editorban töltsd be: bullet.tscn
 
 @export var speed: float = 100.0
 @export var run_multiplier: float = 1.5
@@ -30,14 +30,8 @@ var direction: Vector2 = Vector2.DOWN
 var roll_velocity: Vector2 = Vector2.ZERO
 
 func _ready():
-	if not animated_sprite:
-		push_error("AnimatedSprite2D is not assigned!")
-	if not hp_bar or not stamina_bar:
-		push_error("HP Bar vagy Stamina Bar nincs hozzárendelve!")
-
 	hp_bar.max_value = max_hp
 	hp_bar.value = hp
-
 	stamina_bar.max_value = max_stamina
 	stamina_bar.value = stamina
 
@@ -51,15 +45,10 @@ func _physics_process(delta: float):
 		return
 
 	var input_vector = Vector2.ZERO
-
-	if Input.is_action_pressed("move_up"):
-		input_vector.y -= 1
-	if Input.is_action_pressed("move_down"):
-		input_vector.y += 1
-	if Input.is_action_pressed("move_left"):
-		input_vector.x -= 1
-	if Input.is_action_pressed("move_right"):
-		input_vector.x += 1
+	input_vector.y -= int(Input.is_action_pressed("move_up"))
+	input_vector.y += int(Input.is_action_pressed("move_down"))
+	input_vector.x -= int(Input.is_action_pressed("move_left"))
+	input_vector.x += int(Input.is_action_pressed("move_right"))
 
 	input_vector = input_vector.normalized()
 	if input_vector != Vector2.ZERO:
@@ -68,25 +57,18 @@ func _physics_process(delta: float):
 	if is_sliding:
 		velocity = velocity.move_toward(Vector2.ZERO, slide_friction * delta)
 		if Input.is_action_just_pressed("roll") and stamina >= 20:
-			is_rolling = true
-			roll_timer = roll_duration
-			velocity = direction * boosted_roll_speed
-			animated_sprite.play("roll_" + get_direction_name(direction))
-			stamina -= 20
+			start_roll(boosted_roll_speed)
 			is_sliding = false
 		elif not Input.is_action_pressed("slide") or velocity.length() < 50:
 			is_sliding = false
+
 	elif Input.is_action_just_pressed("slide"):
 		is_sliding = true
 		velocity = direction * slide_speed
 		animated_sprite.play("slide_" + get_direction_name(direction))
 
 	elif Input.is_action_just_pressed("roll") and stamina >= 20:
-		is_rolling = true
-		roll_timer = roll_duration
-		velocity = direction * roll_speed
-		animated_sprite.play("roll_" + get_direction_name(direction))
-		stamina -= 20
+		start_roll(roll_speed)
 
 	elif Input.is_action_pressed("run") and stamina > 0 and not stamina_depleted:
 		velocity = direction * speed * run_multiplier
@@ -101,6 +83,7 @@ func _physics_process(delta: float):
 	elif input_vector != Vector2.ZERO:
 		velocity = direction * speed
 		animated_sprite.play("walk_" + get_direction_name(direction))
+
 	else:
 		velocity = Vector2.ZERO
 		animated_sprite.play("idle_" + get_direction_name(direction))
@@ -113,7 +96,14 @@ func _physics_process(delta: float):
 
 	move_and_slide()
 
-func _process(delta: float):
+func start_roll(speed_value: float):
+	is_rolling = true
+	roll_timer = roll_duration
+	velocity = direction * speed_value
+	animated_sprite.play("roll_" + get_direction_name(direction))
+	stamina -= 20
+
+func _process(_delta: float):
 	# Portál mozgatása az egér irányába
 	var mouse_pos = get_global_mouse_position()
 	var portal_offset = (mouse_pos - global_position).normalized() * 24
@@ -122,7 +112,6 @@ func _process(delta: float):
 	# Portál animáció az irány alapján
 	var angle = portal_offset.angle()
 	var abs_angle = abs(rad_to_deg(angle))
-
 	if (abs_angle < 30 or abs_angle > 150):
 		portal_sprite.play("horizontal")
 	elif (abs_angle >= 60 and abs_angle <= 120):
@@ -139,22 +128,16 @@ func fire_bullet():
 		push_error("Bullet scene nincs hozzárendelve!")
 		return
 
-	# Példányosítjuk a lövedéket
-	var bullet_instance = bullet_scene.instantiate() as Node2D
-
-	# Portál pozícióját a sprite alapján számoljuk
-	var portal_global_pos = portal_sprite.get_global_position()
+	var bullet_instance = bullet_scene.instantiate()
+	var portal_local_pos = $Portal.position
 	var mouse_pos = get_global_mouse_position()
-	var bullet_direction = (mouse_pos - portal_global_pos).normalized()
+	var direction_vector = (mouse_pos - global_position - portal_local_pos).normalized()
 
-	# Beállítások
-	bullet_instance.position = portal_global_pos
-	bullet_instance.direction = bullet_direction
-	bullet_instance.rotation = bullet_direction.angle()
+	bullet_instance.position = portal_local_pos
+	bullet_instance.direction = direction_vector
+	bullet_instance.rotation = direction_vector.angle()
 
-	# Hozzáadjuk a Bullets node-hoz
-	$Bullets.add_child(bullet_instance)
-
+	get_node("Bullets").add_child(bullet_instance)
 
 func get_direction_name(dir: Vector2) -> String:
 	if dir == Vector2.ZERO:

@@ -7,19 +7,13 @@ var lifetime: float = 5.0
 var time_alive: float = 0.0
 
 func _ready():
-	if direction == Vector2.ZERO:
-		direction = Vector2.RIGHT  # fallback irány, balról jobbra
-
-	# Lövedék sprite forgatása az irány alapján
-	rotation = direction.angle()
-
-	# Animáció elindítása
-	if has_node("Sprite"):
-		$Sprite.play("bolt")
+	if direction != Vector2.ZERO:
+		rotation = direction.angle()
+	else:
+		direction = Vector2.RIGHT
 
 func _process(delta: float):
 	position += direction * speed * delta
 	time_alive += delta
-
 	if time_alive >= lifetime:
 		queue_free()
