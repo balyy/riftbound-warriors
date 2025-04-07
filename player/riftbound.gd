@@ -7,7 +7,7 @@ extends CharacterBody2D
 @export var bullet_scene: PackedScene
 
 @export var speed: float = 100.0
-@export var run_multiplier: float = 1.5
+@export var run_multiplier: float = 2.5
 @export var roll_speed: float = 300.0
 @export var boosted_roll_speed: float = 400.0
 @export var slide_speed: float = 250.0

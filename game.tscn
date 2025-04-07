@@ -1,13 +1,27 @@
-[gd_scene load_steps=4 format=3 uid="uid://brb2tdij625wr"]
+[gd_scene load_steps=6 format=3 uid="uid://brb2tdij625wr"]
 
 [ext_resource type="Script" uid="uid://fh202t0wgd68" path="res://scripts/game.gd" id="1_e2o6t"]
 [ext_resource type="PackedScene" uid="uid://clygg5ot46ke3" path="res://rooms/room0/room0.tscn" id="2_e2o6t"]
-[ext_resource type="PackedScene" uid="uid://dee4i8u3ro3xv" path="res://player/player.tscn" id="2_feb5d"]
+[ext_resource type="PackedScene" uid="uid://b0k1juufg2oh3" path="res://player/riftbound.tscn" id="3_feb5d"]
+[ext_resource type="Script" uid="uid://deec7m1ib5soh" path="res://test_enemy.gd" id="4_7jktm"]
+[ext_resource type="Texture2D" uid="uid://d3pcqdtjx8g6p" path="res://Icons/Icons_wShadow_tile8.png" id="5_ryrav"]
 
 [node name="Game" type="Node2D"]
 script = ExtResource("1_e2o6t")
 
-[node name="Button" type="Button" parent="."]
+[node name="Rooms" type="Node2D" parent="."]
+unique_name_in_owner = true
+top_level = true
+
+[node name="Room0" parent="Rooms" instance=ExtResource("2_e2o6t")]
+
+[node name="RiftboundWarrior" parent="." instance=ExtResource("3_feb5d")]
+position = Vector2(-56, 6)
+scale = Vector2(2, 2)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="RiftboundWarrior"]
+
+[node name="Button" type="Button" parent="RiftboundWarrior/CanvasLayer"]
 offset_left = 100.0
 offset_top = 525.0
 offset_right = 422.0
@@ -15,7 +29,7 @@ offset_bottom = 626.0
 theme_override_font_sizes/font_size = 60
 text = "clear room"
 
-[node name="Button2" type="Button" parent="."]
+[node name="Button2" type="Button" parent="RiftboundWarrior/CanvasLayer"]
 offset_left = 462.0
 offset_top = 534.0
 offset_right = 768.0
@@ -23,17 +37,13 @@ offset_bottom = 625.0
 theme_override_font_sizes/font_size = 60
 text = "load room"
 
-[node name="Rooms" type="Node2D" parent="."]
-unique_name_in_owner = true
+[node name="CrossHair" type="Node2D" parent="."]
+position = Vector2(109, 183)
+script = ExtResource("4_7jktm")
 
-[node name="Room0" parent="Rooms" instance=ExtResource("2_e2o6t")]
+[node name="Sprite2D" type="Sprite2D" parent="CrossHair"]
+scale = Vector2(0.166, 0.166)
+texture = ExtResource("5_ryrav")
 
-[node name="Player" parent="." instance=ExtResource("2_feb5d")]
-position = Vector2(-107, -9)
-scale = Vector2(3, 3)
-
-[node name="Camera2D" type="Camera2D" parent="Player"]
-zoom = Vector2(2, 2)
-
-[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
-[connection signal="pressed" from="Button2" to="." method="_on_button_2_pressed"]
+[connection signal="pressed" from="RiftboundWarrior/CanvasLayer/Button" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="RiftboundWarrior/CanvasLayer/Button2" to="." method="_on_button_2_pressed"]

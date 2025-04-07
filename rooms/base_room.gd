@@ -11,6 +11,7 @@ const ENEMIES = [BALL_AND_CHAIN]
 
 func spawn_enemy(enemies_parent : Node2D, location: Vector2):
 	var new_enemy = ENEMIES.pick_random().instantiate()
+	print("spawn")
 	new_enemy.global_position = location
 	enemies_parent.add_child(new_enemy)
 	

@@ -1,8 +1,8 @@
 [gd_scene load_steps=11 format=3 uid="uid://c4xia2g6yqy8y"]
 
-[ext_resource type="Script" uid="uid://b15fn4ksl5w8b" path="res://ui/auth/auth.gd" id="1_8ykvc"]
+[ext_resource type="Script" uid="uid://cpqyujigp064r" path="res://ui/auth/auth.gd" id="1_8ykvc"]
 [ext_resource type="PackedScene" uid="uid://b2nm8jnor4ueh" path="res://enemies/ball_and_chain_robot/ball_and_chain_robot.tscn" id="2_6igxd"]
-[ext_resource type="Script" uid="uid://bpwfhjmltosg8" path="res://ui/auth/random_point.gd" id="3_onwyc"]
+[ext_resource type="Script" uid="uid://dqvy2tm5ctq38" path="res://ui/auth/random_point.gd" id="3_onwyc"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qbuib"]
 bg_color = Color(0.239216, 0.329412, 0.670588, 1)
@@ -285,6 +285,7 @@ custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
 item_count = 3
 popup/item_0/text = "Test"
+popup/item_0/id = 0
 popup/item_1/text = "Test2"
 popup/item_1/id = 1
 popup/item_2/text = "Test3"
