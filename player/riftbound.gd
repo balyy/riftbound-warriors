@@ -105,12 +105,10 @@ func start_roll(speed_value: float):
 	stamina -= 20
 
 func _process(_delta: float):
-	# Portál mozgatása az egér irányába
 	var mouse_pos = get_global_mouse_position()
 	var portal_offset = (mouse_pos - global_position).normalized() * 24
 	$Portal.position = portal_offset
 
-	# Portál animáció az irány alapján
 	var angle = portal_offset.angle()
 	var abs_angle = abs(rad_to_deg(angle))
 	if (abs_angle < 30 or abs_angle > 150):

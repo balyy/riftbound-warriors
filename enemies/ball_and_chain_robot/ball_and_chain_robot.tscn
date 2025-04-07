@@ -3,9 +3,9 @@
 [ext_resource type="Script" uid="uid://858yghpfwpdt" path="res://enemies/ball_and_chain_robot/ball_and_chain_robot.gd" id="1_afi7a"]
 [ext_resource type="Texture2D" uid="uid://c7etdjw6fgqu" path="res://enemies/ball_and_chain_robot/full_sheet.png" id="1_b0ujy"]
 [ext_resource type="Script" uid="uid://cbjod1w12g4u7" path="res://addons/godot_state_charts/state_chart.gd" id="2_dltbl"]
-[ext_resource type="Script" uid="uid://bck5umrny8mis" path="res://addons/godot_state_charts/compound_state.gd" id="3_k4wyh"]
-[ext_resource type="Script" uid="uid://dt44tx1t3vham" path="res://addons/godot_state_charts/atomic_state.gd" id="4_opmk6"]
-[ext_resource type="Script" uid="uid://g6ouw8elguc4" path="res://addons/godot_state_charts/transition.gd" id="6_eften"]
+[ext_resource type="Script" uid="uid://bsyy1lon2c1u2" path="res://addons/godot_state_charts/compound_state.gd" id="3_k4wyh"]
+[ext_resource type="Script" uid="uid://bc5wsr2x31ftx" path="res://addons/godot_state_charts/atomic_state.gd" id="4_opmk6"]
+[ext_resource type="Script" uid="uid://bocdjx2t3ql1q" path="res://addons/godot_state_charts/transition.gd" id="6_eften"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_aeha8"]
 height = 26.0

@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://fh202t0wgd68" path="res://scripts/game.gd" id="1_e2o6t"]
 [ext_resource type="PackedScene" uid="uid://clygg5ot46ke3" path="res://rooms/room0/room0.tscn" id="2_e2o6t"]
 [ext_resource type="PackedScene" uid="uid://b0k1juufg2oh3" path="res://player/riftbound.tscn" id="3_feb5d"]
-[ext_resource type="Script" uid="uid://deec7m1ib5soh" path="res://test_enemy.gd" id="4_7jktm"]
+[ext_resource type="Script" uid="uid://bt45m61y1u2j7" path="res://test_enemy.gd" id="4_7jktm"]
 [ext_resource type="Texture2D" uid="uid://d3pcqdtjx8g6p" path="res://Icons/Icons_wShadow_tile8.png" id="5_ryrav"]
 
 [node name="Game" type="Node2D"]
@@ -22,22 +22,24 @@ scale = Vector2(2, 2)
 [node name="CanvasLayer" type="CanvasLayer" parent="RiftboundWarrior"]
 
 [node name="Button" type="Button" parent="RiftboundWarrior/CanvasLayer"]
-offset_left = 100.0
-offset_top = 525.0
-offset_right = 422.0
-offset_bottom = 626.0
+offset_left = 1236.0
+offset_top = 898.0
+offset_right = 1558.0
+offset_bottom = 999.0
 theme_override_font_sizes/font_size = 60
 text = "clear room"
 
 [node name="Button2" type="Button" parent="RiftboundWarrior/CanvasLayer"]
-offset_left = 462.0
-offset_top = 534.0
-offset_right = 768.0
-offset_bottom = 625.0
+offset_left = 1595.0
+offset_top = 900.0
+offset_right = 1901.0
+offset_bottom = 991.0
 theme_override_font_sizes/font_size = 60
 text = "load room"
 
 [node name="CrossHair" type="Node2D" parent="."]
+top_level = true
+z_index = 10
 position = Vector2(109, 183)
 script = ExtResource("4_7jktm")
 
