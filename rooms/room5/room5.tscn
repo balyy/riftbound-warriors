@@ -91,3 +91,5 @@ unique_name_in_owner = true
 [node name="EndConnectionMarker" type="Marker2D" parent="."]
 unique_name_in_owner = true
 position = Vector2(1920, 0)
+
+[connection signal="area_entered" from="Detections/RoomEntered" to="." method="_on_room_entered_area_entered"]

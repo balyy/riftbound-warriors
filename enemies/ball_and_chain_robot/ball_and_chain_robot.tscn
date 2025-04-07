@@ -260,7 +260,6 @@ animation = &"idle"
 autoplay = "idle"
 
 [node name="DetectionBox" type="Area2D" parent="."]
-visible = false
 collision_layer = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionBox"]

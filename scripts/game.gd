@@ -6,7 +6,8 @@ const ROOM02 = preload("res://rooms/room2/room2.tscn")
 const ROOM03 = preload("res://rooms/room3/room3.tscn")
 const ROOM04 = preload("res://rooms/room4/room4.tscn")
 const ROOM05 = preload("res://rooms/room5/room5.tscn")
-const ROOMS = [ROOM01, ROOM02, ROOM03, ROOM04, ROOM05]
+#const ROOMS = [ROOM01, ROOM02, ROOM03, ROOM04, ROOM05]
+const ROOMS = [ROOM01]
 
 func _ready():
 	Signalbus.room_load_next.connect(on_room_load_next)

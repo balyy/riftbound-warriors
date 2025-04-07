@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=4 uid="uid://bl0g8gucavwis"]
+[gd_scene load_steps=6 format=4 uid="uid://bl0g8gucavwis"]
 
 [ext_resource type="Script" uid="uid://bfxuwn6g6olh4" path="res://rooms/room1/room1.gd" id="1_7bs7r"]
 [ext_resource type="Resource" uid="uid://cueebrb5s5xh7" path="res://rooms/room1/room1.tres" id="2_ijpmr"]
 [ext_resource type="TileSet" uid="uid://b4q5t64nhbqfm" path="res://rooms/tileset.tres" id="3_xw366"]
+[ext_resource type="PackedScene" uid="uid://b2nm8jnor4ueh" path="res://enemies/ball_and_chain_robot/ball_and_chain_robot.tscn" id="4_ijpmr"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_tyh0r"]
 size = Vector2(20, 193)
@@ -50,9 +51,30 @@ position = Vector2(334, 538)
 [node name="Marker2D7" type="Marker2D" parent="Enemies/Spawns"]
 position = Vector2(1013, 531)
 
+[node name="BallAndChainRobot" parent="Enemies" instance=ExtResource("4_ijpmr")]
+position = Vector2(438, 20)
+scale = Vector2(2, 2)
+
+[node name="BallAndChainRobot2" parent="Enemies" instance=ExtResource("4_ijpmr")]
+position = Vector2(433, -395)
+scale = Vector2(2, 2)
+
+[node name="BallAndChainRobot3" parent="Enemies" instance=ExtResource("4_ijpmr")]
+position = Vector2(951, 547)
+scale = Vector2(2, 2)
+
+[node name="BallAndChainRobot4" parent="Enemies" instance=ExtResource("4_ijpmr")]
+position = Vector2(350, 531)
+scale = Vector2(2, 2)
+
+[node name="BallAndChainRobot5" parent="Enemies" instance=ExtResource("4_ijpmr")]
+position = Vector2(686, -217)
+scale = Vector2(2, 2)
+
 [node name="Detections" type="Node2D" parent="."]
 
 [node name="RoomEntered" type="Area2D" parent="Detections"]
+collision_layer = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Detections/RoomEntered"]
 position = Vector2(10, 0)
