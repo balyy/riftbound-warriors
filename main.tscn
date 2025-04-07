@@ -1,57 +1,51 @@
 [gd_scene load_steps=8 format=3 uid="uid://cpee42km1830x"]
 
-[ext_resource type="Script" uid="uid://d1j2spdovfqnf" path="res://main.gd" id="1_788q0"]
+[ext_resource type="Script" uid="uid://b6ivs7rmv1jtc" path="res://main.gd" id="1_788q0"]
 [ext_resource type="PackedScene" uid="uid://bcwkugn6v3oy7" path="res://addons/godot_state_charts/utilities/state_chart_debugger.tscn" id="2_srhp5"]
-[ext_resource type="Script" uid="uid://deec7m1ib5soh" path="res://test_enemy.gd" id="4_cppei"]
-[ext_resource type="Texture2D" uid="uid://c36gii7wsc7ic" path="res://icon.svg" id="5_aha1o"]
-[ext_resource type="Script" uid="uid://c3krkj84hbxxd" path="res://button.gd" id="6_77x7c"]
-[ext_resource type="PackedScene" uid="uid://dee4i8u3ro3xv" path="res://player/player.tscn" id="7_x7fa1"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_6n357"]
-size = Vector2(34, 34)
+[ext_resource type="Texture2D" uid="uid://d3pcqdtjx8g6p" path="res://Icons/Icons_wShadow_tile8.png" id="4_272bh"]
+[ext_resource type="Script" uid="uid://bt45m61y1u2j7" path="res://test_enemy.gd" id="4_cppei"]
+[ext_resource type="Script" uid="uid://ry5ajblsrmep" path="res://button.gd" id="6_77x7c"]
+[ext_resource type="PackedScene" uid="uid://b0k1juufg2oh3" path="res://player/riftbound.tscn" id="7_272bh"]
+[ext_resource type="PackedScene" uid="uid://b2nm8jnor4ueh" path="res://enemies/ball_and_chain_robot/ball_and_chain_robot.tscn" id="7_i5u2x"]
 
 [node name="Main" type="Node2D"]
+position = Vector2(294, 167)
 script = ExtResource("1_788q0")
 
 [node name="StateChartDebugger" parent="." instance=ExtResource("2_srhp5")]
+visible = false
 anchors_preset = 0
 anchor_right = 0.0
 anchor_bottom = 0.0
-offset_left = 476.0
-offset_top = -1.0
-offset_right = 807.0
-offset_bottom = 524.0
+offset_left = -4036.0
+offset_top = -8142.0
+offset_right = -3709.0
+offset_bottom = -7655.0
 grow_horizontal = 1
 grow_vertical = 1
-initial_node_to_watch = NodePath("../Player")
+initial_node_to_watch = NodePath("../RiftboundWarrior")
 
-[node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2(331, 262)
-zoom = Vector2(2, 2)
-
-[node name="TestEnemy" type="Node2D" parent="."]
+[node name="CrossHair" type="Node2D" parent="."]
 position = Vector2(109, 183)
 script = ExtResource("4_cppei")
 
-[node name="Sprite2D" type="Sprite2D" parent="TestEnemy"]
-scale = Vector2(0.265625, 0.265625)
-texture = ExtResource("5_aha1o")
-
-[node name="Area2D" type="Area2D" parent="TestEnemy"]
-collision_mask = 2
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="TestEnemy/Area2D"]
-shape = SubResource("RectangleShape2D_6n357")
+[node name="Sprite2D" type="Sprite2D" parent="CrossHair"]
+scale = Vector2(0.166, 0.166)
+texture = ExtResource("4_272bh")
 
 [node name="Button" type="Button" parent="."]
-offset_left = -143.0
-offset_top = -4.0
-offset_right = 14.0
-offset_bottom = 53.0
+visible = false
+offset_left = -295.0
+offset_top = -167.0
+offset_right = -138.0
+offset_bottom = -110.0
 text = "Log out"
 script = ExtResource("6_77x7c")
 
-[node name="Player" parent="." instance=ExtResource("7_x7fa1")]
-position = Vector2(219, 221)
+[node name="BallAndChainRobot" parent="." instance=ExtResource("7_i5u2x")]
+position = Vector2(313, 105)
+
+[node name="RiftboundWarrior" parent="." instance=ExtResource("7_272bh")]
+position = Vector2(187, 102)
 
 [connection signal="pressed" from="Button" to="Button" method="_on_pressed"]
