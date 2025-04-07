@@ -4,7 +4,7 @@ extends CharacterBody2D
 @export var portal_sprite: AnimatedSprite2D
 @export var hp_bar: TextureProgressBar
 @export var stamina_bar: TextureProgressBar
-@export var bullet_scene: PackedScene  # ← FONTOS! Az editorban töltsd be: bullet.tscn
+@export var bullet_scene: PackedScene
 
 @export var speed: float = 100.0
 @export var run_multiplier: float = 1.5
@@ -34,6 +34,7 @@ func _ready():
 	hp_bar.value = hp
 	stamina_bar.max_value = max_stamina
 	stamina_bar.value = stamina
+	Input.mouse_mode = Input.MOUSE_MODE_CONFINED_HIDDEN
 
 func _physics_process(delta: float):
 	if is_rolling:

@@ -284,3 +284,4 @@ frame_progress = 0.610218
 position = Vector2(1, 0)
 rotation = 1.57885
 shape = SubResource("CapsuleShape2D_mq7ge")
+disabled = true
