@@ -1,0 +1,28 @@
+[gd_scene load_steps=4 format=4 uid="uid://h5vt2quwus67"]
+
+[ext_resource type="Script" uid="uid://cypexi5r8g77f" path="res://rooms/endroom1/endroom1.gd" id="1_ctwiq"]
+[ext_resource type="TileSet" uid="uid://b4q5t64nhbqfm" path="res://rooms/tileset.tres" id="1_hn0ge"]
+[ext_resource type="PackedScene" uid="uid://vn8g5h0ard5h" path="res://teleport/toship/TeleportToShip.tscn" id="3_n8nl8"]
+
+[node name="Endroom1" type="Node2D"]
+script = ExtResource("1_ctwiq")
+
+[node name="TileMapLayer" type="TileMapLayer" parent="."]
+position = Vector2(288, 0)
+tile_map_data = PackedByteArray("AAAAAP//AgAgAAIAAAD/////AgAgAAIAAAD//wAAAgAgAAIAAAAAAAAAAgAgAAIAAAD+////AgAiAAEAAAD+/wAAAgAiAAEAAAABAP//AgAiAAEAAAABAAAAAgAiAAEAAAD//wEAAgAiAAEAAAAAAAEAAgAiAAEAAAAAAP7/AgAiAAEAAAD///7/AgAiAAEAAAABAAEAAgAhAAEAAAABAAIAAgAhAAEAAAAAAAIAAgAhAAEAAAD//wIAAgAhAAEAAAD+/wIAAgAhAAEAAAD+/wEAAgAhAAEAAAD9/wEAAgAhAAEAAAD9/wAAAgAhAAEAAAD9////AgAhAAEAAAD9//7/AgAhAAEAAAD+//7/AgAhAAEAAAD///3/AgAhAAEAAAAAAP3/AgAhAAEAAAABAP3/AgAhAAEAAAABAP7/AgAhAAEAAAACAP7/AgAhAAEAAAACAP//AgAhAAEAAAACAAAAAgAhAAEAAAACAAEAAgAhAAEAAAD+//3/AgAhAAEAAAA=")
+tile_set = ExtResource("1_hn0ge")
+
+[node name="TileMapLayer2" type="TileMapLayer" parent="."]
+position = Vector2(288, 0)
+tile_map_data = PackedByteArray("AAD///z/AgAFAAAAAAAAAPz/AgAFAAAAAAABAPz/AgAIAAAAAAD+//z/AgACAAAAAAD+//3/AgACAAEAAAD9//3/AgABAAEAAAD9//7/AgABAAMAAAD9/wIAAgABAAkAAAD9/wEAAgABAAQAAAABAP3/AgAIAAEAAAACAP3/AgAJAAEAAAACAAEAAgAJAAIAAAACAAIAAgAJAAkAAAABAAIAAgAIAAkAAAD+/wIAAgACAAkAAAD+/wMAAgACAAoAAAABAAMAAgAIAAoAAAD//wMAAgAFAAoAAAAAAAMAAgAFAAoAAAACAP7/AgAJAAIAAAACAAAAAgAJAAIAAAACAP//AgAJAAIAAAA=")
+tile_set = ExtResource("1_hn0ge")
+
+[node name="StartConnectionPoint" type="Marker2D" parent="."]
+unique_name_in_owner = true
+
+[node name="EndConnectionPoint" type="Marker2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(576, 0)
+
+[node name="TeleportToShip" parent="." instance=ExtResource("3_n8nl8")]
+position = Vector2(288, -1)

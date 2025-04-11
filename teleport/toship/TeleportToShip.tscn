@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://vn8g5h0ard5h"]
+
+[ext_resource type="Script" uid="uid://dkibpif7a5y6p" path="res://teleport/toship/teleport_to_ship.gd" id="1_1e6lc"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_l8k26"]
+radius = 45.0111
+
+[node name="TeleportToShip" type="Node2D"]
+script = ExtResource("1_1e6lc")
+TeleportTo = Vector2(-11358, 3503)
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_l8k26")
+
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]

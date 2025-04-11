@@ -1,0 +1,13 @@
+[gd_scene load_steps=2 format=3 uid="uid://dc8a5gya7lboj"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_el6mx"]
+radius = 17.0294
+
+[node name="TeleportToRooms" type="Node2D"]
+
+[node name="Area2D" type="Area2D" parent="."]
+top_level = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+top_level = true
+shape = SubResource("CircleShape2D_el6mx")
