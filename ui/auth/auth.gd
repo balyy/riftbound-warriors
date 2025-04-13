@@ -2,10 +2,14 @@ extends Control
 
 func _ready():
 	Supabase.auth.connect("error", Callable(self, "_on_auth_error"))
+	Supabase.database.connect("updated", Callable(self, "_on_updated"))
+	Supabase.auth.connect("signed_in", Callable(self, "_on_signed_in"))
+	Supabase.auth.connect("signed_up", Callable(self, "on_signed_up"))
+	
 
 
 func update_profile(user_id: String, username : String, email : String, countryid : String):
-	Supabase.database.connect("updated", Callable(self, "_on_updated"))
+	print("updating profile")
 	print(username)
 	print(email)
 	var query = SupabaseQuery.new().from("profiles").update({
@@ -45,8 +49,6 @@ func _on_auth_error(error: Object):
 
 
 func sign_in(email: String, password: String):
-	if not Supabase.auth.is_connected("signed_in", Callable(self, "_on_signed_in")):
-		Supabase.auth.connect("signed_in", Callable(self, "_on_signed_in"))
 	print("Signing in...")
 	print("Email: " + email)
 	print("Password: " + password)
@@ -66,8 +68,6 @@ var password;
 var email;
 var countryid;
 func sign_up():
-	if not Supabase.auth.is_connected("signed_in", Callable(self, "on_signed_in")):
-		Supabase.auth.connect("signed_up", Callable(self, "on_signed_up"))
 	Supabase.auth.sign_up(
 		%SignUpEmailLineEdit.text,
 		%SignUpPasswordLineEdit.text
@@ -123,6 +123,7 @@ func _on_verified_check_box_toggled(toggled_on: bool) -> void:
 		%FinishRegistrationButton.disabled == true;
 
 func _on_finish_registration_button_pressed() -> void:
+	print("finish reg button pressed")
 	sign_in(email, password)
 	update_profile(newUser.id, username, email, countryid)
 	get_tree().change_scene_to_file("res://main.tscn")

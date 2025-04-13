@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="leaderboard_entry" load_steps=2 format=3 uid="uid://2xygnu4afrrp"]
+
+[ext_resource type="Script" uid="uid://ypint3ifxayj" path="res://ui/leaderboard/leaderboard_entry_class.gd" id="1_uk2e6"]
+
+[resource]
+script = ExtResource("1_uk2e6")
+playername = "FreddyFazbear"
+score = 69000
+time = "0:11"
+metadata/_custom_type_script = "uid://ypint3ifxayj"
