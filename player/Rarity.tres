@@ -1,0 +1,6 @@
+[gd_resource type="Resource" load_steps=2 format=3 uid="uid://cmjjansauiamh"]
+
+[ext_resource type="Script" uid="uid://4lk20123ctep" path="res://player/Rarity.gd" id="1_a4pdk"]
+
+[resource]
+script = ExtResource("1_a4pdk")

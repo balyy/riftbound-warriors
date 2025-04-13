@@ -6,6 +6,12 @@ extends CharacterBody2D
 @export var stamina_bar: TextureProgressBar
 @export var bullet_scene: PackedScene
 
+@export var base_character_stats: CharacterStats
+@export var base_weapon_stats: WeaponStats
+
+var current_stats: CharacterStats
+var current_weapon_stats: WeaponStats
+
 @export var speed: float = 100.0
 @export var run_multiplier: float = 2.5
 @export var roll_speed: float = 300.0
@@ -15,24 +21,23 @@ extends CharacterBody2D
 @export var slide_friction: float = 200.0
 @export var roll_friction: float = 500.0
 
-var max_hp: int = 100
-var hp: int = 100
-var max_stamina: int = 100
-var stamina: float = 100.0
-var stamina_regen_rate: float = 10.0
-var stamina_drain_rate: float = 20.0
+var hp: int
+var stamina: float
 var stamina_depleted: bool = false
-
 var is_sliding: bool = false
 var is_rolling: bool = false
 var roll_timer: float = 0.0
 var direction: Vector2 = Vector2.DOWN
-var roll_velocity: Vector2 = Vector2.ZERO
 
 func _ready():
-	hp_bar.max_value = max_hp
+	current_stats = base_character_stats.duplicate()
+	current_weapon_stats = base_weapon_stats.duplicate()
+
+	hp = current_stats.max_hp
+	stamina = current_stats.max_stamina
+	hp_bar.max_value = current_stats.max_hp
+	stamina_bar.max_value = current_stats.max_stamina
 	hp_bar.value = hp
-	stamina_bar.max_value = max_stamina
 	stamina_bar.value = stamina
 	Input.mouse_mode = Input.MOUSE_MODE_CONFINED_HIDDEN
 
@@ -50,8 +55,8 @@ func _physics_process(delta: float):
 	input_vector.y += int(Input.is_action_pressed("move_down"))
 	input_vector.x -= int(Input.is_action_pressed("move_left"))
 	input_vector.x += int(Input.is_action_pressed("move_right"))
-
 	input_vector = input_vector.normalized()
+
 	if input_vector != Vector2.ZERO:
 		direction = input_vector
 
@@ -74,7 +79,7 @@ func _physics_process(delta: float):
 	elif Input.is_action_pressed("run") and stamina > 0 and not stamina_depleted:
 		velocity = direction * speed * run_multiplier
 		animated_sprite.play("run_" + get_direction_name(direction))
-		stamina -= stamina_drain_rate * delta
+		stamina -= current_stats.stamina_drain_rate * delta
 		if stamina <= 0:
 			stamina = 0
 			stamina_depleted = true
@@ -90,7 +95,7 @@ func _physics_process(delta: float):
 		animated_sprite.play("idle_" + get_direction_name(direction))
 
 	if not is_sliding and not is_rolling:
-		stamina = min(stamina + stamina_regen_rate * delta, max_stamina)
+		stamina = min(stamina + current_stats.stamina_regen_rate * delta, current_stats.max_stamina)
 
 	hp_bar.value = hp
 	stamina_bar.value = stamina
@@ -111,15 +116,15 @@ func _process(_delta: float):
 
 	var angle = portal_offset.angle()
 	var abs_angle = abs(rad_to_deg(angle))
-	if (abs_angle < 30 or abs_angle > 150):
+	if abs_angle < 30 or abs_angle > 150:
 		portal_sprite.play("horizontal")
-	elif (abs_angle >= 60 and abs_angle <= 120):
+	elif abs_angle >= 60 and abs_angle <= 120:
 		portal_sprite.play("vertical")
 	else:
 		portal_sprite.play("diagonal")
 
 func _unhandled_input(event):
-	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
+	if event.is_action_pressed("fire"):
 		fire_bullet()
 
 func fire_bullet():
@@ -128,13 +133,20 @@ func fire_bullet():
 		return
 
 	var bullet_instance = bullet_scene.instantiate()
-	var portal_local_pos = $Portal.position
+	var portal_pos = $Portal.position
 	var mouse_pos = get_global_mouse_position()
-	var direction_vector = (mouse_pos - global_position - portal_local_pos).normalized()
+	var dir_vector = (mouse_pos - global_position - portal_pos).normalized()
 
-	bullet_instance.position = portal_local_pos
-	bullet_instance.direction = direction_vector
-	bullet_instance.rotation = direction_vector.angle()
+	# Accuracy randomítás
+	var spread = (1.0 - current_weapon_stats.accuracy) * PI / 8
+	var random_angle = randf_range(-spread, spread)
+	dir_vector = dir_vector.rotated(random_angle)
+
+	bullet_instance.position = portal_pos
+	bullet_instance.direction = dir_vector
+	bullet_instance.rotation = dir_vector.angle()
+	bullet_instance.speed = current_weapon_stats.bullet_speed
+	bullet_instance.damage = current_weapon_stats.damage
 
 	get_node("Bullets").add_child(bullet_instance)
 
