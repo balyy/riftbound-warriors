@@ -277,6 +277,7 @@ collision_mask = 15
 script = ExtResource("1_mq7ge")
 
 [node name="Sprite" type="AnimatedSprite2D" parent="."]
+top_level = true
 scale = Vector2(0.25, 0.25)
 sprite_frames = SubResource("SpriteFrames_hagul")
 animation = &"bolt"
