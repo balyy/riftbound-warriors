@@ -245,6 +245,7 @@ border_color = Color(0.0807833, 0.0807833, 0.0807833, 1)
 [node name="BallAndChainRobot" type="CharacterBody2D" node_paths=PackedStringArray("sprite")]
 z_index = 10
 y_sort_enabled = true
+scale = Vector2(2, 2)
 collision_layer = 2
 script = ExtResource("1_afi7a")
 sprite = NodePath("AnimatedSprite2D")

@@ -3369,7 +3369,9 @@ stamina_bar = NodePath(".")
 sprite_frames = SubResource("SpriteFrames_uq2ii")
 animation = &"diagonal"
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="Hitbox" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
 position = Vector2(0, 2)
 shape = SubResource("CapsuleShape2D_mwdwu")
 
