@@ -1,20 +1,17 @@
-[gd_scene load_steps=9 format=3 uid="uid://brb2tdij625wr"]
+[gd_scene load_steps=8 format=3 uid="uid://brb2tdij625wr"]
 
 [ext_resource type="Script" uid="uid://fh202t0wgd68" path="res://scripts/game.gd" id="1_e2o6t"]
 [ext_resource type="PackedScene" uid="uid://clygg5ot46ke3" path="res://rooms/room0/room0.tscn" id="2_e2o6t"]
-[ext_resource type="PackedScene" uid="uid://cpee42km1830x" path="res://main.tscn" id="2_j5wjh"]
 [ext_resource type="PackedScene" uid="uid://b0k1juufg2oh3" path="res://player/riftbound.tscn" id="3_feb5d"]
 [ext_resource type="Script" uid="uid://bt45m61y1u2j7" path="res://test_enemy.gd" id="4_7jktm"]
 [ext_resource type="Texture2D" uid="uid://d3pcqdtjx8g6p" path="res://Icons/Icons_wShadow_tile8.png" id="5_ryrav"]
 [ext_resource type="PackedScene" uid="uid://d4jvb73somfla" path="res://rooms/spaceship/spaceship.tscn" id="6_ryrav"]
-[ext_resource type="Texture2D" uid="uid://ca4plcouvskn2" path="res://Icons/Icons_wShadow_tile60.png" id="7_eow3j"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_vkxht"]
 font_size = 100
 
 [node name="Game" type="Node2D"]
 script = ExtResource("1_e2o6t")
-main_menu_scene = ExtResource("2_j5wjh")
 
 [node name="Marker2D" type="Marker2D" parent="."]
 position = Vector2(-11358, 3503)
@@ -26,18 +23,11 @@ top_level = true
 [node name="Room0" parent="Rooms" instance=ExtResource("2_e2o6t")]
 
 [node name="RiftboundWarrior" parent="." instance=ExtResource("3_feb5d")]
-position = Vector2(-5.96046e-08, -3)
+unique_name_in_owner = true
+position = Vector2(-2, -10)
 scale = Vector2(2, 2)
-collision_layer = 3
-collision_mask = 3
 
 [node name="CanvasLayer" type="CanvasLayer" parent="RiftboundWarrior"]
-
-[node name="BackButton" type="Button" parent="RiftboundWarrior/CanvasLayer"]
-top_level = true
-offset_right = 168.0
-offset_bottom = 168.0
-icon = ExtResource("7_eow3j")
 
 [node name="Button" type="Button" parent="RiftboundWarrior/CanvasLayer"]
 offset_left = 1236.0

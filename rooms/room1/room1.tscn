@@ -74,7 +74,7 @@ scale = Vector2(2, 2)
 [node name="Detections" type="Node2D" parent="."]
 
 [node name="RoomEntered" type="Area2D" parent="Detections"]
-collision_layer = 2
+collision_layer = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Detections/RoomEntered"]
 position = Vector2(10, 0)

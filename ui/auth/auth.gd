@@ -1,18 +1,12 @@
 extends Control
 
-@export var main_menu_scene: PackedScene
-
 func _ready():
 	Supabase.auth.connect("error", Callable(self, "_on_auth_error"))
 	Supabase.database.connect("updated", Callable(self, "_on_updated"))
 	Supabase.auth.connect("signed_in", Callable(self, "_on_signed_in"))
 	Supabase.auth.connect("signed_up", Callable(self, "on_signed_up"))
-	$BackButton.pressed.connect(_on_back_pressed)
 	
 
-func _on_back_pressed():
-	if main_menu_scene:
-		get_tree().change_scene_to_packed(main_menu_scene)
 
 func update_profile(user_id: String, username : String, email : String, countryid : String):
 	print("updating profile")
