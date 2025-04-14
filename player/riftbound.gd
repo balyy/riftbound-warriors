@@ -114,6 +114,7 @@ func _process(_delta: float):
 	var mouse_pos = get_global_mouse_position()
 	var portal_offset = (mouse_pos - global_position).normalized() * 24
 	$Portal.position = portal_offset
+	
 
 	var angle = portal_offset.angle()
 	var abs_angle = abs(rad_to_deg(angle))
@@ -135,6 +136,8 @@ func fire_bullet():
 
 	var bullet_instance = bullet_scene.instantiate()
 	var portal_local_pos = $Portal.position
+	print("portal_local_pos")
+	print(portal_local_pos)
 	var mouse_pos = get_global_mouse_position()
 	var direction_vector = (mouse_pos - global_position - portal_local_pos).normalized()
 
@@ -142,7 +145,7 @@ func fire_bullet():
 	bullet_instance.direction = direction_vector
 	bullet_instance.rotation = direction_vector.angle()
 
-	get_node("Bullets").add_child(bullet_instance)
+	add_child(bullet_instance)
 
 func get_direction_name(dir: Vector2) -> String:
 	if dir == Vector2.ZERO:

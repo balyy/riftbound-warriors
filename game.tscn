@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://fh202t0wgd68" path="res://scripts/game.gd" id="1_e2o6t"]
 [ext_resource type="PackedScene" uid="uid://clygg5ot46ke3" path="res://rooms/room0/room0.tscn" id="2_e2o6t"]
 [ext_resource type="PackedScene" uid="uid://b0k1juufg2oh3" path="res://player/riftbound.tscn" id="3_feb5d"]
-[ext_resource type="Script" uid="uid://bt45m61y1u2j7" path="res://test_enemy.gd" id="4_7jktm"]
+[ext_resource type="Script" uid="uid://baut5vaypod7p" path="res://test_enemy.gd" id="4_7jktm"]
 [ext_resource type="Texture2D" uid="uid://d3pcqdtjx8g6p" path="res://Icons/Icons_wShadow_tile8.png" id="5_ryrav"]
 [ext_resource type="PackedScene" uid="uid://d4jvb73somfla" path="res://rooms/spaceship/spaceship.tscn" id="6_ryrav"]
 
@@ -26,8 +26,6 @@ top_level = true
 unique_name_in_owner = true
 position = Vector2(-2, -10)
 scale = Vector2(2, 2)
-collision_layer = 3
-collision_mask = 3
 
 [node name="CanvasLayer" type="CanvasLayer" parent="RiftboundWarrior"]
 

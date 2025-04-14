@@ -17,3 +17,5 @@ func _process(delta: float):
 	time_alive += delta
 	if time_alive >= lifetime:
 		queue_free()
+		
+	

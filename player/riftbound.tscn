@@ -3290,6 +3290,8 @@ animations = [{
 [node name="RiftboundWarrior" type="CharacterBody2D" node_paths=PackedStringArray("animated_sprite", "portal_sprite", "hp_bar", "stamina_bar")]
 z_index = 10
 position = Vector2(483, 272)
+collision_layer = 3
+collision_mask = 3
 script = ExtResource("1_rbiwf")
 animated_sprite = NodePath("AnimatedSprite2D")
 portal_sprite = NodePath("Portal/AnimatedSprite2D")
@@ -3359,11 +3361,6 @@ script = SubResource("GDScript_pblig")
 hp_bar = NodePath("../HPBar")
 stamina_bar = NodePath(".")
 
-[node name="Bullets" type="Node2D" parent="."]
-top_level = true
-
-[node name="Bullet" parent="Bullets" instance=ExtResource("2_r2eex")]
-
 [node name="Portal" type="Node2D" parent="."]
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Portal"]
@@ -3415,3 +3412,7 @@ script = ExtResource("3_v35wr")
 
 [node name="slide" type="Node" parent="StateChart/Character Root"]
 script = ExtResource("3_v35wr")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 2)
+shape = SubResource("CapsuleShape2D_mwdwu")
