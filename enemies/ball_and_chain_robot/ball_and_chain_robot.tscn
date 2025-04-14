@@ -1,4 +1,4 @@
-[gd_scene load_steps=40 format=3 uid="uid://b2nm8jnor4ueh"]
+[gd_scene load_steps=45 format=3 uid="uid://b2nm8jnor4ueh"]
 
 [ext_resource type="Script" uid="uid://858yghpfwpdt" path="res://enemies/ball_and_chain_robot/ball_and_chain_robot.gd" id="1_afi7a"]
 [ext_resource type="Texture2D" uid="uid://c7etdjw6fgqu" path="res://enemies/ball_and_chain_robot/full_sheet.png" id="1_b0ujy"]
@@ -65,6 +65,26 @@ region = Rect2(384, 576, 192, 192)
 [sub_resource type="AtlasTexture" id="AtlasTexture_3wn0o"]
 atlas = ExtResource("1_b0ujy")
 region = Rect2(576, 576, 192, 192)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_i0ydm"]
+atlas = ExtResource("1_b0ujy")
+region = Rect2(0, 1152, 192, 192)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_26pm7"]
+atlas = ExtResource("1_b0ujy")
+region = Rect2(192, 1152, 192, 192)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ck08q"]
+atlas = ExtResource("1_b0ujy")
+region = Rect2(384, 1152, 192, 192)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6jjwj"]
+atlas = ExtResource("1_b0ujy")
+region = Rect2(576, 1152, 192, 192)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lcq2y"]
+atlas = ExtResource("1_b0ujy")
+region = Rect2(768, 1152, 192, 192)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_gta43"]
 atlas = ExtResource("1_b0ujy")
@@ -170,6 +190,26 @@ animations = [{
 }],
 "loop": false,
 "name": &"charge",
+"speed": 7.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_i0ydm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_26pm7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ck08q")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6jjwj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lcq2y")
+}],
+"loop": true,
+"name": &"death",
 "speed": 7.0
 }, {
 "frames": [{

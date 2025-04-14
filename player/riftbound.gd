@@ -28,6 +28,7 @@ var is_sliding: bool = false
 var is_rolling: bool = false
 var roll_timer: float = 0.0
 var direction: Vector2 = Vector2.DOWN
+var can_fire: bool = true
 
 func _ready():
 	current_stats = base_character_stats.duplicate()
@@ -133,20 +134,13 @@ func fire_bullet():
 		return
 
 	var bullet_instance = bullet_scene.instantiate()
-	var portal_pos = $Portal.position
+	var portal_local_pos = $Portal.position
 	var mouse_pos = get_global_mouse_position()
-	var dir_vector = (mouse_pos - global_position - portal_pos).normalized()
+	var direction_vector = (mouse_pos - global_position - portal_local_pos).normalized()
 
-	# Accuracy randomítás
-	var spread = (1.0 - current_weapon_stats.accuracy) * PI / 8
-	var random_angle = randf_range(-spread, spread)
-	dir_vector = dir_vector.rotated(random_angle)
-
-	bullet_instance.position = portal_pos
-	bullet_instance.direction = dir_vector
-	bullet_instance.rotation = dir_vector.angle()
-	bullet_instance.speed = current_weapon_stats.bullet_speed
-	bullet_instance.damage = current_weapon_stats.damage
+	bullet_instance.position = portal_local_pos
+	bullet_instance.direction = direction_vector
+	bullet_instance.rotation = direction_vector.angle()
 
 	get_node("Bullets").add_child(bullet_instance)
 
@@ -162,3 +156,8 @@ func get_direction_name(dir: Vector2) -> String:
 	elif dir.x < 0:
 		return "left"
 	return "down"
+
+func take_damage(amount: int):
+	hp -= amount
+	if hp <= 0:
+		queue_free()

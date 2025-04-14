@@ -2,7 +2,6 @@ extends Node2D
 
 @export var speed: float = 200.0
 @export var direction: Vector2 = Vector2.ZERO
-@export var damage: int = 35
 
 var lifetime: float = 5.0
 var time_alive: float = 0.0

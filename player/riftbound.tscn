@@ -3360,6 +3360,7 @@ hp_bar = NodePath("../HPBar")
 stamina_bar = NodePath(".")
 
 [node name="Bullets" type="Node2D" parent="."]
+top_level = true
 
 [node name="Bullet" parent="Bullets" instance=ExtResource("2_r2eex")]
 
