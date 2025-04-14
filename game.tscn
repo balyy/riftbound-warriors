@@ -26,6 +26,8 @@ top_level = true
 unique_name_in_owner = true
 position = Vector2(-2, -10)
 scale = Vector2(2, 2)
+collision_layer = 3
+collision_mask = 3
 
 [node name="CanvasLayer" type="CanvasLayer" parent="RiftboundWarrior"]
 
@@ -60,6 +62,7 @@ position = Vector2(-11358, 3503)
 
 [node name="GameOver" type="CanvasLayer" parent="."]
 unique_name_in_owner = true
+visible = false
 
 [node name="UI" type="Control" parent="GameOver"]
 layout_mode = 3
