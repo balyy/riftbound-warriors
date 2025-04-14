@@ -1,5 +1,6 @@
 extends Node2D
 
+@export var main_menu_scene: PackedScene
 
 const ROOM01 = preload("res://rooms/room1/room1.tscn")
 const ROOM02 = preload("res://rooms/room2/room2.tscn")
@@ -18,7 +19,12 @@ func _ready():
 	Signalbus.room_load_next.connect(on_room_load_next)
 	Signalbus.player_died.connect(on_player_died)
 	loaded_rooms.append(%Rooms.get_children()[0])
+	$RiftboundWarrior/CanvasLayer/BackButton.pressed.connect(_on_back_pressed)
 
+func _on_back_pressed():
+	if main_menu_scene:
+		get_tree().change_scene_to_packed(main_menu_scene)
+		
 func on_room_load_next():
 	load_room()
 

@@ -134,7 +134,7 @@ animations = [{
 }]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_mwdwu"]
-radius = 7.0
+radius = 8.0
 height = 28.0
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_a6g7p"]
@@ -3289,7 +3289,6 @@ animations = [{
 
 [node name="RiftboundWarrior" type="CharacterBody2D" node_paths=PackedStringArray("animated_sprite", "portal_sprite", "hp_bar", "stamina_bar")]
 z_index = 10
-position = Vector2(483, 272)
 script = ExtResource("1_rbiwf")
 animated_sprite = NodePath("AnimatedSprite2D")
 portal_sprite = NodePath("Portal/AnimatedSprite2D")
@@ -3370,7 +3369,9 @@ sprite_frames = SubResource("SpriteFrames_uq2ii")
 animation = &"diagonal"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, 2)
+top_level = true
+light_mask = 3
+visibility_layer = 3
 shape = SubResource("CapsuleShape2D_mwdwu")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]

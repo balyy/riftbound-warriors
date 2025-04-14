@@ -1,8 +1,9 @@
-[gd_scene load_steps=9 format=3 uid="uid://df7pimudykbd"]
+[gd_scene load_steps=10 format=3 uid="uid://df7pimudykbd"]
 
 [ext_resource type="Script" uid="uid://depk4i6wvgy0b" path="res://ui/leaderboard/leaderboard.gd" id="1_etus6"]
 [ext_resource type="PackedScene" uid="uid://b2nm8jnor4ueh" path="res://enemies/ball_and_chain_robot/ball_and_chain_robot.tscn" id="1_rbe8t"]
-[ext_resource type="Script" uid="uid://dqvy2tm5ctq38" path="res://ui/auth/random_point.gd" id="2_etus6"]
+[ext_resource type="Script" uid="uid://bpwfhjmltosg8" path="res://ui/auth/random_point.gd" id="2_etus6"]
+[ext_resource type="Texture2D" uid="uid://ca4plcouvskn2" path="res://Icons/Icons_wShadow_tile60.png" id="4_2kjw3"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rbe8t"]
 bg_color = Color(0.239216, 0.329412, 0.670588, 1)
@@ -96,6 +97,14 @@ rotation = -0.00477486
 unique_name_in_owner = true
 wait_time = 5.0
 autostart = true
+
+[node name="BackButton" type="Button" parent="BackgroundStuff"]
+top_level = true
+offset_left = 98.0
+offset_top = 81.0
+offset_right = 266.0
+offset_bottom = 249.0
+icon = ExtResource("4_2kjw3")
 
 [node name="PanelContainer" type="PanelContainer" parent="."]
 layout_mode = 1
