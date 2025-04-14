@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://brb2tdij625wr"]
+[gd_scene load_steps=8 format=3 uid="uid://brb2tdij625wr"]
 
 [ext_resource type="Script" uid="uid://fh202t0wgd68" path="res://scripts/game.gd" id="1_e2o6t"]
 [ext_resource type="PackedScene" uid="uid://clygg5ot46ke3" path="res://rooms/room0/room0.tscn" id="2_e2o6t"]
@@ -6,6 +6,9 @@
 [ext_resource type="Script" uid="uid://deec7m1ib5soh" path="res://test_enemy.gd" id="4_7jktm"]
 [ext_resource type="Texture2D" uid="uid://d3pcqdtjx8g6p" path="res://Icons/Icons_wShadow_tile8.png" id="5_ryrav"]
 [ext_resource type="PackedScene" uid="uid://d4jvb73somfla" path="res://rooms/spaceship/spaceship.tscn" id="6_ryrav"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_vkxht"]
+font_size = 100
 
 [node name="Game" type="Node2D"]
 script = ExtResource("1_e2o6t")
@@ -54,6 +57,100 @@ texture = ExtResource("5_ryrav")
 
 [node name="Spaceship" parent="." instance=ExtResource("6_ryrav")]
 position = Vector2(-11358, 3503)
+
+[node name="GameOver" type="CanvasLayer" parent="."]
+unique_name_in_owner = true
+
+[node name="UI" type="Control" parent="GameOver"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+
+[node name="ColorRect" type="ColorRect" parent="GameOver/UI"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.556863)
+
+[node name="GameOverLabel" type="Label" parent="GameOver/UI/ColorRect"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -272.5
+offset_top = -285.5
+offset_right = 272.5
+offset_bottom = -148.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "Game Over"
+label_settings = SubResource("LabelSettings_vkxht")
+
+[node name="CheatedLabel" type="Label" parent="GameOver/UI/ColorRect"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -164.5
+offset_top = 247.0
+offset_right = 164.5
+offset_bottom = 289.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 30
+text = "Too bad you cheated :/"
+horizontal_alignment = 1
+
+[node name="FinalScoreLabel" type="Label" parent="GameOver/UI/ColorRect"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -61.0
+offset_top = 163.5
+offset_right = 61.0
+offset_bottom = 186.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 30
+text = "Your score:"
+horizontal_alignment = 1
+
+[node name="RestartButton" type="Button" parent="GameOver/UI"]
+process_mode = 3
+custom_minimum_size = Vector2(200, 50)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -100.0
+offset_top = -145.0
+offset_right = 100.0
+offset_bottom = -95.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_font_sizes/font_size = 30
+text = "Restart"
 
 [connection signal="pressed" from="RiftboundWarrior/CanvasLayer/Button" to="." method="_on_button_pressed"]
 [connection signal="pressed" from="RiftboundWarrior/CanvasLayer/Button2" to="." method="_on_button_2_pressed"]

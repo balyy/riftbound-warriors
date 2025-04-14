@@ -12,8 +12,11 @@ const ROOMS = [ROOM01, ROOM02, ROOM03, ROOM04, ROOM05]
 const ENDROOM01 = preload("res://rooms/endroom1/endroom1.tscn")
 const ENDROOMS = [ENDROOM01]
 
+var score = 0
+
 func _ready():
 	Signalbus.room_load_next.connect(on_room_load_next)
+	Signalbus.player_died.connect(on_player_died)
 	loaded_rooms.append(%Rooms.get_children()[0])
 
 func on_room_load_next():
@@ -48,10 +51,15 @@ func load_room():
 func unload_rooms():
 	for room in loaded_rooms:
 		room.queue_free()
+		loaded_rooms.erase(room)
+
+func on_player_died():
+	%GameOver.visible = true
+	%FinalScoreLabel.text = "Your score: " + str(score)
+	
 
 func _on_button_pressed():
 	Signalbus.room_cleared.emit()
-
 
 func _on_button_2_pressed():
 	Signalbus.room_load_next.emit()
