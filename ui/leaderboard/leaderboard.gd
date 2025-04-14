@@ -13,6 +13,26 @@ func _ready():
 	# You can replace this with the actual signal from the player class
 	connect("player_died", _on_player_died)
 
+func create_leaderboard_entry(user_id: String, time_value: String, score_value: int) -> void:
+	print("Creating leaderboard entry...")
+	
+	var query = SupabaseQuery.new().from("leaderboard").insert([{
+		"user_id": user_id,
+		"time": time_value, # time as a string like "00:02:15"
+		"score": score_value
+	}])
+
+	var task = Supabase.database.query(query)
+	
+	# Otionally handle result
+	var result = await task.completed
+	if task.error:
+		print("Leaderboard entry error: ", task.error.message)
+	else:
+		print("Leaderboard entry created successfully: ", result)
+	
+	fetch_leaderboard_entries()
+
 # Function to add the leaderboard entry to the database
 func add_leaderboard_entry(time_value: String, score_value: int) -> void:
 	# Get the currently logged-in user's ID
@@ -41,11 +61,13 @@ func add_leaderboard_entry(time_value: String, score_value: int) -> void:
 	else:
 		print("Leaderboard entry created successfully: ", result)
 
+	fetch_leaderboard_entries()
+	
 # Function to fetch leaderboard entries
 func fetch_leaderboard_entries() -> void:
 	print("Fetching leaderboard entries...")
 
-	var query = SupabaseQuery.new().from("leaderboard").select(PackedStringArray(["*"])).order("score", false)
+	var query = SupabaseQuery.new().from("leaderboard").select(PackedStringArray(["*"])).order("score", true)
 	var task = Supabase.database.query(query)
 	var result_object = await task.completed
 
@@ -64,10 +86,15 @@ func fetch_leaderboard_entries() -> void:
 		child.queue_free()
 
 	# Iterate through the result_object.data (which is an Array)
+	var placing = 0
 	for entry_data in result_object.data:
 		var entry_res = leaderboard_entry.new()
 		entry_res.score = entry_data["score"]
 		entry_res.time = entry_data["time"]
+		
+		placing += 1
+		entry_res.placing = placing
+		print(placing)
 
 		# Fetch player name from profiles
 		entry_res.playername = await fetch_playername(entry_data["user_id"])
@@ -111,3 +138,16 @@ func player_die(final_score: int) -> void:
 	# Get the current date in a suitable format, e.g., "2025-04-13 15:30:00"
 	var current_date = "2025.04.14"
 	emit_signal("player_died", final_score, current_date)
+
+
+func _on_show_new_entry_panel_button_pressed():
+	%NewEntryContainer.visible = true
+
+
+func _on_cancel_entry_button_pressed():
+	%NewEntryContainer.visible = false
+	
+	
+func _on_add_entry_button_pressed():
+	create_leaderboard_entry(%UserIdLineEdit.text, %TimeLineEdit.text, int(%ScoreLineEdit.text))
+	

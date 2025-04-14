@@ -4,10 +4,12 @@
 [ext_resource type="Resource" uid="uid://2xygnu4afrrp" path="res://ui/leaderboard/example_data/example_leaderboard_entry.tres" id="2_sjq81"]
 
 [node name="LeaderboardEntry" type="Control"]
+custom_minimum_size = Vector2(0, 40)
 layout_mode = 3
-anchors_preset = 15
+anchors_preset = 14
+anchor_top = 0.5
 anchor_right = 1.0
-anchor_bottom = 1.0
+anchor_bottom = 0.5
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_7a2a4")
@@ -35,7 +37,6 @@ alignment = 1
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_font_sizes/font_size = 30
-text = "#1"
 
 [node name="VSeparator" type="VSeparator" parent="PanelContainer/MarginContainer/HBoxContainer"]
 layout_mode = 2

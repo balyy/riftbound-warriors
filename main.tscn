@@ -38,6 +38,7 @@ offset_bottom = 212.0
 text = "Play"
 
 [node name="AuthButton" type="Button" parent="."]
+layout_mode = 0
 offset_left = 551.0
 offset_top = 230.0
 offset_right = 601.0
@@ -45,6 +46,7 @@ offset_bottom = 261.0
 text = "Login"
 
 [node name="QuitButton" type="Button" parent="."]
+layout_mode = 0
 offset_left = 553.0
 offset_top = 270.0
 offset_right = 595.0

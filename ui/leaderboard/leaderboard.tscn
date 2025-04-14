@@ -145,12 +145,8 @@ theme_override_constants/separation = 30
 [node name="LeaderboardEntriesVBoxContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
-alignment = 1
-
-[node name="VScrollBar" type="VScrollBar" parent="PanelContainer/MarginContainer/VBoxContainer/LeaderboardEntriesVBoxContainer"]
-custom_minimum_size = Vector2(20, 0)
-layout_mode = 2
-rounded = true
+size_flags_vertical = 3
+theme_override_constants/separation = 5
 
 [node name="NewEntryContainer" type="PanelContainer" parent="."]
 unique_name_in_owner = true
