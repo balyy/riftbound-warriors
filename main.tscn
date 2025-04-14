@@ -1,51 +1,52 @@
-[gd_scene load_steps=8 format=3 uid="uid://cpee42km1830x"]
+[gd_scene load_steps=5 format=3 uid="uid://cpee42km1830x"]
 
-[ext_resource type="Script" uid="uid://d1j2spdovfqnf" path="res://main.gd" id="1_788q0"]
-[ext_resource type="PackedScene" uid="uid://bcwkugn6v3oy7" path="res://addons/godot_state_charts/utilities/state_chart_debugger.tscn" id="2_srhp5"]
-[ext_resource type="Texture2D" uid="uid://d3pcqdtjx8g6p" path="res://Icons/Icons_wShadow_tile8.png" id="4_272bh"]
-[ext_resource type="Script" uid="uid://deec7m1ib5soh" path="res://test_enemy.gd" id="4_cppei"]
-[ext_resource type="Script" uid="uid://c3krkj84hbxxd" path="res://button.gd" id="6_77x7c"]
-[ext_resource type="PackedScene" uid="uid://b0k1juufg2oh3" path="res://player/riftbound.tscn" id="7_272bh"]
-[ext_resource type="PackedScene" uid="uid://b2nm8jnor4ueh" path="res://enemies/ball_and_chain_robot/ball_and_chain_robot.tscn" id="7_i5u2x"]
+[ext_resource type="Script" uid="uid://b6ivs7rmv1jtc" path="res://main.gd" id="1_788q0"]
+[ext_resource type="PackedScene" uid="uid://brb2tdij625wr" path="res://game.tscn" id="2_h2yge"]
+[ext_resource type="PackedScene" uid="uid://c4xia2g6yqy8y" path="res://ui/auth/auth.tscn" id="3_1bvp3"]
+[ext_resource type="Texture2D" uid="uid://bn0a5v6lmdol5" path="res://riftbound_warrior_menu.jpg" id="4_1bvp3"]
 
-[node name="Main" type="Node2D"]
-position = Vector2(294, 167)
-script = ExtResource("1_788q0")
-
-[node name="StateChartDebugger" parent="." instance=ExtResource("2_srhp5")]
-visible = false
+[node name="Main" type="Control"]
+layout_mode = 3
 anchors_preset = 0
-anchor_right = 0.0
-anchor_bottom = 0.0
-offset_left = -4036.0
-offset_top = -8142.0
-offset_right = -3709.0
-offset_bottom = -7655.0
-grow_horizontal = 1
-grow_vertical = 1
-initial_node_to_watch = NodePath("../RiftboundWarrior")
+offset_right = 1920.0
+offset_bottom = 1078.0
+script = ExtResource("1_788q0")
+game_scene = ExtResource("2_h2yge")
+auth_scene = ExtResource("3_1bvp3")
 
-[node name="CrossHair" type="Node2D" parent="."]
-position = Vector2(109, 183)
-script = ExtResource("4_cppei")
+[node name="Background" type="TextureRect" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("4_1bvp3")
 
-[node name="Sprite2D" type="Sprite2D" parent="CrossHair"]
-scale = Vector2(0.166, 0.166)
-texture = ExtResource("4_272bh")
+[node name="TitleLabel" type="Label" parent="."]
+layout_mode = 0
+offset_left = 477.0
+offset_top = 107.0
+offset_right = 1405.0
+offset_bottom = 400.0
+text = "Riftbound Warrior"
+uppercase = true
 
-[node name="Button" type="Button" parent="."]
-visible = false
-offset_left = -295.0
-offset_top = -167.0
-offset_right = -138.0
-offset_bottom = -110.0
-text = "Log out"
-script = ExtResource("6_77x7c")
+[node name="PlayButton" type="Button" parent="."]
+layout_mode = 0
+offset_left = 551.0
+offset_top = 181.0
+offset_right = 592.0
+offset_bottom = 212.0
+text = "Play"
 
-[node name="BallAndChainRobot" parent="." instance=ExtResource("7_i5u2x")]
-position = Vector2(313, 105)
+[node name="AuthButton" type="Button" parent="."]
+offset_left = 551.0
+offset_top = 230.0
+offset_right = 601.0
+offset_bottom = 261.0
+text = "Login"
 
-[node name="RiftboundWarrior" parent="." instance=ExtResource("7_272bh")]
-position = Vector2(187, 102)
-
-[connection signal="pressed" from="Button" to="Button" method="_on_pressed"]
+[node name="QuitButton" type="Button" parent="."]
+offset_left = 553.0
+offset_top = 270.0
+offset_right = 595.0
+offset_bottom = 301.0
+text = "Quit"
