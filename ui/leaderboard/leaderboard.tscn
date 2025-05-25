@@ -44,6 +44,7 @@ grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_rbe8t")
 
 [node name="Background" type="TextureRect" parent="."]
+layout_mode = 0
 offset_right = 1920.0
 offset_bottom = 1080.0
 texture = ExtResource("2_2kjw3")
@@ -141,6 +142,7 @@ horizontal_alignment = 1
 
 [node name="ShowNewEntryPanelButton" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer"]
 unique_name_in_owner = true
+visible = false
 layout_mode = 2
 theme_override_font_sizes/font_size = 30
 text = "Add new entry"

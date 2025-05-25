@@ -19,6 +19,7 @@ config/icon="res://icon.svg"
 
 Supabase="*res://addons/supabase/Supabase/supabase.gd"
 Signalbus="*res://scripts/misc/signalbus.gd"
+FmlAuthService="*res://ui/auth/fml_auth_service.gd"
 
 [display]
 

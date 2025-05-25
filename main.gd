@@ -5,6 +5,9 @@ extends Control
 @export var leaderboard_scene: PackedScene
 
 func _ready():
+	if await FmlAuthService.get_user_role() >= FmlAuthService.ROLES.USER:
+		%AuthButton.visible = false
+	
 	$PanelContainer/MarginContainer/VBoxContainer/PlayButton.text = "Start game"
 	$PanelContainer/MarginContainer/VBoxContainer/LeaderboardButton.text = "Leaderboard"
 	$PanelContainer/MarginContainer/VBoxContainer/AuthButton.text = "Login"

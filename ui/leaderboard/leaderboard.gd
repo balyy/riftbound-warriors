@@ -11,7 +11,10 @@ func _ready():
 	fetch_leaderboard_entries()
 	# Connect to the player_died signal (from wherever the player dies)
 	# You can replace this with the actual signal from the player class
+	Signalbus.fetch_leaderboard.connect(fetch_leaderboard_entries)
 	connect("player_died", _on_player_died)
+	if await FmlAuthService.is_admin():
+		%ShowNewEntryPanelButton.visible = true
 
 func create_leaderboard_entry(user_id: String, time_value: String, score_value: int) -> void:
 	print("Creating leaderboard entry...")
@@ -91,6 +94,7 @@ func fetch_leaderboard_entries() -> void:
 		var entry_res = leaderboard_entry.new()
 		entry_res.score = entry_data["score"]
 		entry_res.time = entry_data["time"]
+		entry_res.id = entry_data["id"]
 		
 		placing += 1
 		entry_res.placing = placing
