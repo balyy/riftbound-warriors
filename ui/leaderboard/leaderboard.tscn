@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://depk4i6wvgy0b" path="res://ui/leaderboard/leaderboard.gd" id="1_etus6"]
 [ext_resource type="PackedScene" uid="uid://b2nm8jnor4ueh" path="res://enemies/ball_and_chain_robot/ball_and_chain_robot.tscn" id="1_rbe8t"]
 [ext_resource type="Texture2D" uid="uid://bn0a5v6lmdol5" path="res://riftbound_warrior_menu.jpg" id="2_2kjw3"]
-[ext_resource type="Script" uid="uid://dqvy2tm5ctq38" path="res://ui/auth/random_point.gd" id="2_etus6"]
+[ext_resource type="Script" uid="uid://bpwfhjmltosg8" path="res://ui/auth/random_point.gd" id="2_etus6"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rbe8t"]
 bg_color = Color(0.239216, 0.329412, 0.670588, 1)
